@@ -12,7 +12,7 @@ fn vulnerable_check_password (attempt: &str) -> bool {
     
     if attempt.len() != SECRET.len() {
         return false;
-    }
+    }   
 
     let attempt_bytes: &[u8] = attempt.as_bytes();
     let secret_bytes: &[u8] = SECRET.as_bytes();
