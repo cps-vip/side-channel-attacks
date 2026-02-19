@@ -47,17 +47,9 @@ def hamming_weight(byte_array):
     Returns:
         np.ndarray of ints, same shape as input
     """
-
-    """
-    hamming_array = np.array(dtype=np.int32)
-    for x in byte_array:
-        hamming_array = np.append(hamming_array, bin(x).count('1'))
-    
-    return hamming_array"""
-
-    # More efficient than above method
-    hamming_array = np.array([bin(x).count('1') for x in byte_array], dtype=np.int32)
-        
+    flat_array = byte_array.flatten()
+    hw_flat = [bin(x).count('1') for x in flat_array]
+    hamming_array = np.array(hw_flat, dtype=np.int32).reshape(byte_array.shape)
     return hamming_array
 
 def generate_traces(num_traces, noise_std):
@@ -83,7 +75,7 @@ def generate_traces(num_traces, noise_std):
     intermediate_values = SBOX[intermediate]
     
     # Hamming weight + noise
-    traces = hamming_weight(intermediate_values)
+    traces = hamming_weight(intermediate_values).astype(np.float64)
     traces += np.random.normal(0, noise_std, traces.shape)
     
     
