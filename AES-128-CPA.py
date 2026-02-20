@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 
 NUM_TRACES = 500       # Number of simulated encryptions
 NUM_BYTES  = 16        # AES-128 block size in bytes
-NOISE_STD  = 1.0       # Std deviation of Gaussian noise)
+NOISE_STD  = 2.0       # Std deviation of Gaussian noise)
 
 # Standard AES-128 S-box
 
@@ -145,7 +145,7 @@ def attack_full_key(plaintexts, traces, true_key):
 true_key, plaintexts, traces = generate_traces(NUM_TRACES, NOISE_STD)
 print(f'True key (hex): {true_key.tobytes().hex()}\n')
 recovered = attack_full_key(plaintexts, traces, true_key)
-print(f'\nTrue key:      {true_key.tobytes().hex()}')
+print(f'\nTrue key: {true_key.tobytes().hex()}')
 print(f'Recovered key: {recovered.tobytes().hex()}')
 correct = np.sum(recovered == true_key)
 print(f'Correct bytes: {correct}/16  |  Full match: {np.array_equal(true_key, recovered)}')
