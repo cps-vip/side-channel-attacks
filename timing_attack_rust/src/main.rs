@@ -21,7 +21,7 @@ fn vulnerable_check_password (attempt: &str) -> bool {
         if attempt_bytes[i] != secret_bytes[i] {
             return false; // This is the Early Exit Vulnerability
         }
-        //thread::sleep(Duration::from_millis(9)); // Add some time to make the vulnerability more obvious
+        thread::sleep(Duration::from_millis(9)); // Add some time to make the vulnerability more obvious
         // thread::sleep(...) tells OS to stop executing current thread
         // releases CPU to other threads, blocks current thread
     }
