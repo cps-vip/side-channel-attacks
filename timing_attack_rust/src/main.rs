@@ -1,15 +1,12 @@
 // AUTHORS - Carter, Estelle
 use std::thread;
 use std::time::{Duration, Instant};
-//use std::io::{self, Write};
-//use std::sync::OnceLock;
-
 
 const SECRET: &str = "Pa55word123";
 
-// -- VULNERABLE PASSWORD CHECKER --
+/// Checks a password attempt against SECRET using byte-by-byte comparison.
+/// Vulnerable to timing attacks due to early exit and per-character delay.
 fn vulnerable_check_password (attempt: &str) -> bool {
-    
     if attempt.len() != SECRET.len() {
         return false;
     }   
@@ -19,24 +16,20 @@ fn vulnerable_check_password (attempt: &str) -> bool {
 
     for i in 0..attempt.len() {
         if attempt_bytes[i] != secret_bytes[i] {
-            return false; // This is the Early Exit Vulnerability
+            return false;
         }
-        thread::sleep(Duration::from_millis(9)); // Add some time to make the vulnerability more obvious
-        // thread::sleep(...) tells OS to stop executing current thread
-        // releases CPU to other threads, blocks current thread
+        // Artificial delay to exaggerate the timing side-channel
+        thread::sleep(Duration::from_millis(9));
     }
 
     true
 }   
 
-// -- ATTACK --
+/// Exploits the timing side-channel in `vulnerable_check_password` to recover
+/// the secret one character at a time.
 fn attack() {
     let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    // let found: bool = false;
-
-    //assume  we know the length of the password
     let mut current_attempt = String::new();
-    // mut is a mutable variable
 
     for i in 0..SECRET.len() {
         let mut longest_duration = Duration::new(0, 0);
@@ -45,38 +38,35 @@ fn attack() {
         println!("Position {}...", i);
 
         for candidate in charset.chars() {
+            // Build a full-length guess: known prefix + candidate + padding
             let mut attempt = current_attempt.clone();
             attempt.push(candidate);
-            // .push adds candidate to the end of current_attempt
-
-            // pad with random chars to match len of SECRET
             while attempt.len() < SECRET.len() {
                 attempt.push('A'); 
             }
             
-            // MEAUSRE EXECUTION TIME
-
+            // Measure how long the check takes
             let start = Instant::now();
             vulnerable_check_password(&attempt);
             let duration = start.elapsed();
 
-            // if this character took long, we passed the check and moved to
-            // next character
-
+            // A longer duration means more characters matched
             if duration > longest_duration {
                 longest_duration = duration;
                 probable_char = Some(candidate);
             }
         }
-        // Unwrap the character from Option<char> to print it
+
         let best_char = probable_char.unwrap();
         current_attempt.push(best_char);
 
-        println!("  FOUND: '{}' (Time: {:?}) -> Current Guess: {}", best_char, longest_duration, current_attempt);
-        
+        println!(
+            "  FOUND: '{}' (Time: {:?}) -> Current Guess: {}", 
+            best_char, longest_duration, current_attempt
+        );
     }
 
-    // print final result
+    // Verify the recovered password
     println!("\nFinal Result:");
     if vulnerable_check_password(&current_attempt) {
         println!("SUCCESS! The password is '{}'", current_attempt);
@@ -85,21 +75,6 @@ fn attack() {
     }
 }   
 
-
-//static SECRET: OnceLock<String> = OnceLock::new();
-
 fn main() {
-    /*
-    println!("Enter password: ");
-    let mut input = String::new();
-
-    io::stdin()
-        .read_line(&mut input)
-        .expect("Failed to read line");
-
-    let trimmed_input = input.trim();  // Remove newline character
-
-    SECRET.set(input.trim().to_string()).unwrap(); */
-
     attack();
 }
