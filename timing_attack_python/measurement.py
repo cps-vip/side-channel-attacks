@@ -2,6 +2,8 @@ import time
 import statistics
 from password_checkers import vulnerable_check, constant_time_check
 
+# author - Piper
+
 def measure(func, guess, iterations=100000):
     #func is the function to check, which is vulnerable_check or constant_time_check
     # guess is password attempt we want to measure

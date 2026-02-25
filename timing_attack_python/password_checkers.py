@@ -1,5 +1,8 @@
+# author - Piper
 import time
 import statistics
+
+
 
 SECRET_PASSWORD = "PASSWORD"
 
