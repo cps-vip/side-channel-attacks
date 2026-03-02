@@ -28,6 +28,7 @@ Software simulation of CPA targeting AES-128 using Hamming weight power models w
 
 ### 2. Timing Attack on AES-128
 
+- Develop timing-attack vulnerable AES-128 implementation (Aly Aadil)
 - Implement a timing side-channel attack against an AES-128 implementation
 - Attack should use only command-line observable timing (no API-level access)
 - Language: prefer a compiled language (Rust** or C++) for tighter timing control
