@@ -56,7 +56,9 @@ def hamming_weight(byte_array):
     return hamming_array"""
 
     # More efficient than above method
-    hamming_array = np.array([bin(x).count('1') for x in byte_array], dtype=np.int32)
+    flat_array = byte_array.flatten()
+    hw_flat = [bin(x).count('1') for x in flat_array]
+    hamming_array = np.array(hw_flat, dtype=np.int32).reshape(byte_array.shape)
         
     return hamming_array
 
@@ -83,7 +85,7 @@ def generate_traces(num_traces, noise_std):
     intermediate_values = SBOX[intermediate]
     
     # Hamming weight + noise
-    traces = hamming_weight(intermediate_values)
+    traces = hamming_weight(intermediate_values).astype(np.float64)
     traces += np.random.normal(0, noise_std, traces.shape)
     
     
@@ -96,3 +98,58 @@ print(f"True key (hex): {true_key.tobytes().hex()}")
 print(f"Plaintexts shape: {plaintexts.shape}")
 print(f"Traces shape:     {traces.shape}")
 print(f"Trace sample (first 5 values): {traces[0, :5]}")
+
+#Chosen plaintext attack (CPA), single byte attack
+
+def single_byte_attack(plaintexts, traces, byte_index):
+    """
+    Perform a single-byte CPA attack to recover one byte of the key.
+    
+    Args:
+        plaintexts: np.ndarray (num_traces, 16) uint8
+        traces:     np.ndarray (num_traces, 16) float64
+        byte_index: int, which byte position to attack (0-15)
+    Returns:
+        best_guess:    int (0-255), the recovered key byte
+        correlations:  np.ndarray (256,), correlation for each guess
+    """
+    pearson_correlations = np.zeros(256)
+
+    for guess in range(256):
+        hypothetical_intermediate = SBOX[plaintexts[:, byte_index] ^ guess]
+        hypothetical_weight = hamming_weight(hypothetical_intermediate)
+        # Compute Pearson correlation
+        pearson_correlations[guess] = np.corrcoef(hypothetical_weight, traces[:, byte_index])[0, 1]
+    best_guess = np.argmax(np.abs(pearson_correlations))
+    return best_guess, pearson_correlations
+
+#loop over all bytes to recover the full key
+def attack_full_key(plaintexts, traces, true_key):
+    """
+    Recover all 16 bytes of the AES-128 key.
+    
+    Returns:
+        recovered_key: np.ndarray (16,) uint8
+    """
+    recovered_key = np.zeros(16, dtype=np.uint8)
+
+    for j in range(NUM_BYTES):
+        guess, corrs = single_byte_attack(plaintexts, traces, j)
+        recovered_key[j] = guess
+        match = 'Y' if guess == true_key[j] else 'N'
+        print(f'  Byte {j:2d} — Recovered: 0x{guess:02x}  Actual: 0x{true_key[j]:02x}  {match}  (corr: {corrs[guess]:.4f})')
+
+    return recovered_key
+
+
+true_key, plaintexts, traces = generate_traces(NUM_TRACES, NOISE_STD)
+print(f'True key (hex): {true_key.tobytes().hex()}\n')
+recovered = attack_full_key(plaintexts, traces, true_key)
+print(f'\nTrue key:      {true_key.tobytes().hex()}')
+print(f'Recovered key: {recovered.tobytes().hex()}')
+correct = np.sum(recovered == true_key)
+print(f'Correct bytes: {correct}/16  |  Full match: {np.array_equal(true_key, recovered)}')
+
+#Visualize correlation for key guess
+
+#optional: traces vs recovered key guess
