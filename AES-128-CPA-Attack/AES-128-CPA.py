@@ -11,8 +11,8 @@ Power consumption leaks information -
 import numpy as np
 import matplotlib.pyplot as plt
 
-NUM_TRACES = 500       # Number of simulated encryptions
-NUM_BYTES  = 16        # AES-128 block size in bytes
+NUM_TRACES = 100       # Number of simulated encryptions
+NUM_BYTES  = 16        # AES-S128 block size in bytes
 NOISE_STD  = 2.0       # Std deviation of Gaussian noise)
 
 # Standard AES-128 S-box
@@ -130,21 +130,24 @@ def attack_full_key(plaintexts, traces, true_key):
     
     Returns:
         recovered_key: np.ndarray (16,) uint8
+        all_correlations: np.ndarray (16, 256) float64 - Pearson r for every byte/guess pair
     """
     recovered_key = np.zeros(16, dtype=np.uint8)
+    all_correlations = np.zeros((NUM_BYTES, 256), dtype=np.float64)
 
     for j in range(NUM_BYTES):
         guess, corrs = single_byte_attack(plaintexts, traces, j)
         recovered_key[j] = guess
+        all_correlations[j] = corrs
         match = 'Y' if guess == true_key[j] else 'N'
         print(f'  Byte {j:2d} — Recovered: 0x{guess:02x}  Actual: 0x{true_key[j]:02x}  {match}  (corr: {corrs[guess]:.4f})')
 
-    return recovered_key
+    return recovered_key, all_correlations
 
 
 true_key, plaintexts, traces = generate_traces(NUM_TRACES, NOISE_STD)
 print(f'True key (hex): {true_key.tobytes().hex()}\n')
-recovered = attack_full_key(plaintexts, traces, true_key)
+recovered, all_correlations = attack_full_key(plaintexts, traces, true_key)
 print(f'\nTrue key: {true_key.tobytes().hex()}')
 print(f'Recovered key: {recovered.tobytes().hex()}')
 correct = np.sum(recovered == true_key)
@@ -152,4 +155,59 @@ print(f'Correct bytes: {correct}/16  |  Full match: {np.array_equal(true_key, re
 
 #Visualize correlation for key guess
 
-#optional: traces vs recovered key guess
+
+# -- Correlations heatmap --
+# Rows = key byte index (0-15), columns = guess (0-255)
+# Cell value = |Pearson r| between hypothetical hamming weight model and actual trace column.
+# The true key byte should appear as the brightest cell in each row.
+
+fig, ax = plt.subplots(figsize=(14, 5))
+
+im = ax.imshow(
+    np.abs(all_correlations),
+    aspect='auto',
+    cmap='hot',
+    vmin=0,
+    vmax=1,
+    origin='upper',
+)
+
+for byte_idx in range(NUM_BYTES):
+    ax.scatter(
+        true_key[byte_idx], byte_idx,
+        marker='x', color='cyan', s=80, linewidths=1.5, zorder=5,
+        label='True key byte' if byte_idx == 0 else None,
+    )
+
+ax.set_title('CPA Correlation Heatmap - |Pearson r| for each key byte vs. all 256 guesses')
+ax.set_xlabel('Key Byte Candidate (0-255)')
+ax.set_ylabel('Key Byte Index (0-15)')
+ax.set_yticks(range(NUM_BYTES))
+plt.colorbar(im, ax=ax, label='|Pearson r|')
+plt.tight_layout()
+#plt.savefig('cpa_heatmap.png', dpi=150, bbox_inches='tight')
+plt.show()
+
+# -- Power traces plot --
+# Each line is one simulated encryption's power draw across the 16 AES S-box positions.
+# The spread between traces at each byte comes from different plaintexts hitting different
+# Hamming weights. The mean trace shows the average power per byte position.
+
+NUM_TRACES_TO_PLOT = 10
+
+fig, ax = plt.subplots(figsize=(12, 5))
+
+for i in range(NUM_TRACES_TO_PLOT):
+    ax.plot(range(NUM_BYTES), traces[i], color='steelblue', alpha=0.3, linewidth=1)
+
+mean_trace = traces.mean(axis=0)
+ax.plot(range(NUM_BYTES), mean_trace, color='red', linewidth=2, label='Mean trace')
+
+ax.set_title(f'Simulated Power Traces - {NUM_TRACES_TO_PLOT} encryptions (HW + Gaussian noise σ={NOISE_STD})')
+ax.set_xlabel('AES State Byte Index (0–15)')
+ax.set_ylabel('Simulated Power (Hamming weight + noise)')
+ax.set_xticks(range(NUM_BYTES))
+ax.legend()
+plt.tight_layout()
+plt.savefig('power_traces.png', dpi=150, bbox_inches='tight')
+plt.show()
