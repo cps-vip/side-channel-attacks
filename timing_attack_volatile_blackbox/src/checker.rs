@@ -3,7 +3,7 @@ const SECRET: &str = "r4ndomP@ss";
 #[inline(never)]
 fn do_per_char_work(byte: u8) -> u64 {
     let mut buf: [u64; 4] = [byte as u64, 1, 2, 3];
-    for i in 0..50_000_u64 {
+    for i in 0..50_u64 {
         let prev = unsafe { std::ptr::read_volatile(&buf[(i % 4) as usize]) };
         let next = prev
             .wrapping_mul(6364136223846793005)

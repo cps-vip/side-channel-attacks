@@ -1,0 +1,1 @@
+iters,samples,run,position,chosen_char,correct_char,chosen_score_ns,second_char,second_score_ns,gap_ns,gap_ratio,was_correct,partial_guess
