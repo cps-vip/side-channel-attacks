@@ -1,0 +1,16 @@
+timestamp=2026-09-23T14:51:30
+platform=macOS-26.6.2-arm64-arm-64bit
+machine=arm64
+python=3.9.6
+rustc=rustc 1.98.1 (48a229cea 2026-09-01)
+cargo=cargo 1.98.1 (797e8a9bc 2026-08-05)
+git_rev=ed18ec4
+binary=target/release/timing_attack_rust2
+password_len=11
+charset=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+runs=3
+samples=10
+warmup=3
+max_seconds=900
+delay_ms_per_matching_byte=9
+build_command=cargo build --release
