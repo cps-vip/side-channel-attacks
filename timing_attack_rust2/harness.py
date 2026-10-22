@@ -152,13 +152,13 @@ def crack_password(
 
 def write_metadata(output_dir: Path, args) -> None:
     rustc_version = subprocess.run(
-        ["/Users/cgossmann05/.cargo/bin/rustc", "--version"],
+        ["rustc", "--version"],
         check=True,
         capture_output=True,
         text=True,
     ).stdout.strip()
     cargo_version = subprocess.run(
-        ["/Users/cgossmann05/.cargo/bin/cargo", "--version"],
+        ["cargo", "--version"],
         check=True,
         capture_output=True,
         text=True,
