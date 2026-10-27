@@ -1,0 +1,22 @@
+# Never publish environment files or local credentials.
+.env
+.env.*
+**/.env
+**/.env.*
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+# Rebuild native artifacts from the committed C source.
+*.dll
+*.obj
+*.lib
+*.exp
+# Large generated datasets, raw recovery measurements and Colab archives.
+datasets/
+*.zip
+*.partial
+research_results/
+.test-research-*/
+.slide-build/
+results/

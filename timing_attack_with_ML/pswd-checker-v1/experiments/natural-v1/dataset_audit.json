@@ -1,0 +1,13 @@
+{
+  "all_raw_shard_checksums_verified": true,
+  "gzip_crc_verified": true,
+  "shards": 520,
+  "candidate_batch_rows": 7488000,
+  "baseline_rows": 10400,
+  "model_features_per_candidate": 18,
+  "split_counts": {
+    "train": 182,
+    "validation": 39,
+    "test": 39
+  }
+}

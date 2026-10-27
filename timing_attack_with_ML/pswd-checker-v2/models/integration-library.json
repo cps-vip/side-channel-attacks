@@ -1,0 +1,410 @@
+{
+  "schema_version": 2,
+  "feature_version": 2,
+  "feature_names": [
+    "tsc_ticks_q10",
+    "tsc_ticks_q50",
+    "tsc_ticks_q90",
+    "tsc_ticks_iqr",
+    "tsc_ticks_mad",
+    "tsc_ticks_paired_q50",
+    "tsc_ticks_round_wins",
+    "wall_ns_q10",
+    "wall_ns_q50",
+    "wall_ns_q90",
+    "wall_ns_iqr",
+    "wall_ns_mad",
+    "wall_ns_paired_q50",
+    "wall_ns_round_wins",
+    "thread_cycles_q10",
+    "thread_cycles_q50",
+    "thread_cycles_q90",
+    "thread_cycles_iqr",
+    "thread_cycles_mad",
+    "thread_cycles_paired_q50",
+    "thread_cycles_round_wins",
+    "tsc_ticks_q10_last",
+    "tsc_ticks_q50_last",
+    "tsc_ticks_q90_last",
+    "tsc_ticks_iqr_last",
+    "tsc_ticks_mad_last",
+    "tsc_ticks_paired_q50_last",
+    "tsc_ticks_round_wins_last",
+    "wall_ns_q10_last",
+    "wall_ns_q50_last",
+    "wall_ns_q90_last",
+    "wall_ns_iqr_last",
+    "wall_ns_mad_last",
+    "wall_ns_paired_q50_last",
+    "wall_ns_round_wins_last",
+    "thread_cycles_q10_last",
+    "thread_cycles_q50_last",
+    "thread_cycles_q90_last",
+    "thread_cycles_iqr_last",
+    "thread_cycles_mad_last",
+    "thread_cycles_paired_q50_last",
+    "thread_cycles_round_wins_last"
+  ],
+  "detector_names": [
+    "tsc_ticks_peak",
+    "tsc_ticks_gap",
+    "tsc_ticks_separation",
+    "tsc_ticks_winner_consistency",
+    "wall_ns_peak",
+    "wall_ns_gap",
+    "wall_ns_separation",
+    "wall_ns_winner_consistency",
+    "thread_cycles_peak",
+    "thread_cycles_gap",
+    "thread_cycles_separation",
+    "thread_cycles_winner_consistency",
+    "last",
+    "depth"
+  ],
+  "model_type": "linear_group_softmax_plus_logistic_prefix_detector",
+  "weights": [
+    0.12249823920941723,
+    0.12777975081179455,
+    -0.020386939763642732,
+    -0.13873230707842904,
+    0.037833133023765356,
+    0.1239108540754601,
+    0.2165393280987195,
+    0.0913117498140103,
+    0.10035523888675404,
+    -0.07289781807702761,
+    -0.01697932020242309,
+    0.10518745961124487,
+    0.09073259416193212,
+    0.20840179470278597,
+    0.13201957303818054,
+    0.1341234905898007,
+    0.06223792020070038,
+    0.07713864731152849,
+    0.13559700046577697,
+    0.12395983228403128,
+    0.20930731926194573,
+    -0.2521698349196299,
+    -0.25128975575319973,
+    -0.24711503170455626,
+    -0.1188304821220449,
+    -0.12364768608024493,
+    -0.25070060571872876,
+    -0.2508046885279789,
+    -0.2540096116654747,
+    -0.2533313869450906,
+    -0.24907001457283068,
+    -0.11974144632965772,
+    -0.15803661642416225,
+    -0.25313022662973683,
+    -0.24447302167400076,
+    -0.2511246280266162,
+    -0.2535097877196381,
+    -0.24750207861641832,
+    -0.0027307592520538987,
+    0.04723880658327121,
+    -0.25121695463965393,
+    -0.24808296877081104
+  ],
+  "l2": 0.0,
+  "detector_weights": [
+    0.031542378405056554,
+    0.2678513639552434,
+    0.26507140812188423,
+    0.2989664078718097,
+    0.2655530320011555,
+    0.2477916534116158,
+    0.21904429031294576,
+    0.3011952208898659,
+    0.2345480541334472,
+    0.24850291329046864,
+    0.22624970819367807,
+    0.3106385509745032,
+    0.24960964179940648,
+    0.1025803983216661,
+    -0.06866914219217024
+  ],
+  "detector_l2": 0.0,
+  "detector_threshold": 0.1,
+  "epochs": 5,
+  "seed": 7,
+  "created_utc": "2026-10-22T01:50:13.256376+00:00",
+  "training_platform": "Windows-11-10.0.26200-SP0",
+  "training_python": "3.14.0",
+  "dataset_manifest_sha256": "5f3add95c4beeb8b75beb91618bd21e6726b2058b78b3e1fb31991a1b43ee6f1",
+  "collection_config": {
+    "checker": "library",
+    "passwords": 9,
+    "alphabet": "ab01",
+    "min_length": 4,
+    "max_length": 4,
+    "sessions": 1,
+    "min_samples": 4,
+    "max_samples": 8,
+    "warmup": 1,
+    "negative_prefixes": 1,
+    "cpu": 0,
+    "seed": 20261023,
+    "exclude_dataset": [],
+    "batch": 1000,
+    "checkpoints": [
+      4,
+      8
+    ],
+    "work": 0
+  },
+  "training_source_sha256": {
+    "lab_config.py": "ff48d50c43c8d61d8e2d2c3f3bf6ff20a6f675c7410c3d9fe75618c6041af4b3",
+    "recovery.py": "89a8dc43ac8eefb86dcc86e6620ce0ae1e9ba492f909563eb3f55c609dc88ee8",
+    "timing_model.py": "ce379dd8c783d6e3240f739d4f1ba302da25f8e9cac3c7109bbbe17bb371941e",
+    "splits.py": "004926cf45bbc2d489484f220f4c9635dcad961d9b40ab4368bca593ccaacdc4",
+    "research_pipeline.py": "b2775992829e7fe4f9151146e76168c346f8f872af8aa3fcd0c334478b748c16"
+  },
+  "train_password_ids": [
+    "648b6fd15701d254",
+    "96429ed01c4d5401",
+    "a8dc9d1a1a1c7680",
+    "d2e693535ff29392",
+    "e75a6cd43a16c2f3",
+    "e90df0c1169d34a5"
+  ],
+  "validation_password_ids": [
+    "6844728ff26cc427",
+    "f69e97faa197a076"
+  ],
+  "validation_rank_experiments": [
+    {
+      "l2": 0.0,
+      "validation_character_metrics": {
+        "all": {
+          "groups": 8,
+          "model_correct": 8,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 0.75
+        },
+        "earlier": {
+          "groups": 6,
+          "model_correct": 6,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 1.0
+        },
+        "length_4": {
+          "groups": 8,
+          "model_correct": 8,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 0.75
+        },
+        "last": {
+          "groups": 2,
+          "model_correct": 2,
+          "median_correct": 0,
+          "model_accuracy": 1.0,
+          "median_accuracy": 0.0
+        }
+      }
+    },
+    {
+      "l2": 0.001,
+      "validation_character_metrics": {
+        "all": {
+          "groups": 8,
+          "model_correct": 8,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 0.75
+        },
+        "earlier": {
+          "groups": 6,
+          "model_correct": 6,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 1.0
+        },
+        "length_4": {
+          "groups": 8,
+          "model_correct": 8,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 0.75
+        },
+        "last": {
+          "groups": 2,
+          "model_correct": 2,
+          "median_correct": 0,
+          "model_accuracy": 1.0,
+          "median_accuracy": 0.0
+        }
+      }
+    },
+    {
+      "l2": 0.01,
+      "validation_character_metrics": {
+        "all": {
+          "groups": 8,
+          "model_correct": 8,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 0.75
+        },
+        "earlier": {
+          "groups": 6,
+          "model_correct": 6,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 1.0
+        },
+        "length_4": {
+          "groups": 8,
+          "model_correct": 8,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 0.75
+        },
+        "last": {
+          "groups": 2,
+          "model_correct": 2,
+          "median_correct": 0,
+          "model_accuracy": 1.0,
+          "median_accuracy": 0.0
+        }
+      }
+    }
+  ],
+  "validation_detector_experiments": [
+    {
+      "l2": 0.0,
+      "threshold": 0.1,
+      "validation": {
+        "valid_groups": 16,
+        "wrong_prefix_groups": 12,
+        "false_rejection_rate": 0.0,
+        "wrong_prefix_detection_rate": 0.16666666666666666,
+        "balanced_accuracy": 0.5833333333333334
+      }
+    },
+    {
+      "l2": 0.001,
+      "threshold": 0.1,
+      "validation": {
+        "valid_groups": 16,
+        "wrong_prefix_groups": 12,
+        "false_rejection_rate": 0.0,
+        "wrong_prefix_detection_rate": 0.16666666666666666,
+        "balanced_accuracy": 0.5833333333333334
+      }
+    },
+    {
+      "l2": 0.01,
+      "threshold": 0.1,
+      "validation": {
+        "valid_groups": 16,
+        "wrong_prefix_groups": 12,
+        "false_rejection_rate": 0.0,
+        "wrong_prefix_detection_rate": 0.16666666666666666,
+        "balanced_accuracy": 0.5833333333333334
+      }
+    }
+  ],
+  "test_used_for_selection": false,
+  "sampling_thresholds": {
+    "model": 2.0,
+    "median": 0.5
+  },
+  "sampling_validation": {
+    "model": {
+      "selected": {
+        "threshold": 2.0,
+        "correct": 8,
+        "groups": 8,
+        "samples_sum": 48
+      },
+      "trials": [
+        {
+          "threshold": 0.5,
+          "correct": 8,
+          "groups": 8,
+          "samples_sum": 48
+        },
+        {
+          "threshold": 1.0,
+          "correct": 8,
+          "groups": 8,
+          "samples_sum": 48
+        },
+        {
+          "threshold": 2.0,
+          "correct": 8,
+          "groups": 8,
+          "samples_sum": 48
+        },
+        {
+          "threshold": 4.0,
+          "correct": 8,
+          "groups": 8,
+          "samples_sum": 52
+        },
+        {
+          "threshold": 8.0,
+          "correct": 8,
+          "groups": 8,
+          "samples_sum": 64
+        },
+        {
+          "threshold": 1000000000.0,
+          "correct": 8,
+          "groups": 8,
+          "samples_sum": 64
+        }
+      ]
+    },
+    "median": {
+      "selected": {
+        "threshold": 0.5,
+        "correct": 6,
+        "groups": 8,
+        "samples_sum": 48
+      },
+      "trials": [
+        {
+          "threshold": 0.5,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 48
+        },
+        {
+          "threshold": 1.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 52
+        },
+        {
+          "threshold": 2.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 52
+        },
+        {
+          "threshold": 4.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 64
+        },
+        {
+          "threshold": 8.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 64
+        },
+        {
+          "threshold": 1000000000.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 64
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,410 @@
+{
+  "schema_version": 2,
+  "feature_version": 2,
+  "feature_names": [
+    "tsc_ticks_q10",
+    "tsc_ticks_q50",
+    "tsc_ticks_q90",
+    "tsc_ticks_iqr",
+    "tsc_ticks_mad",
+    "tsc_ticks_paired_q50",
+    "tsc_ticks_round_wins",
+    "wall_ns_q10",
+    "wall_ns_q50",
+    "wall_ns_q90",
+    "wall_ns_iqr",
+    "wall_ns_mad",
+    "wall_ns_paired_q50",
+    "wall_ns_round_wins",
+    "thread_cycles_q10",
+    "thread_cycles_q50",
+    "thread_cycles_q90",
+    "thread_cycles_iqr",
+    "thread_cycles_mad",
+    "thread_cycles_paired_q50",
+    "thread_cycles_round_wins",
+    "tsc_ticks_q10_last",
+    "tsc_ticks_q50_last",
+    "tsc_ticks_q90_last",
+    "tsc_ticks_iqr_last",
+    "tsc_ticks_mad_last",
+    "tsc_ticks_paired_q50_last",
+    "tsc_ticks_round_wins_last",
+    "wall_ns_q10_last",
+    "wall_ns_q50_last",
+    "wall_ns_q90_last",
+    "wall_ns_iqr_last",
+    "wall_ns_mad_last",
+    "wall_ns_paired_q50_last",
+    "wall_ns_round_wins_last",
+    "thread_cycles_q10_last",
+    "thread_cycles_q50_last",
+    "thread_cycles_q90_last",
+    "thread_cycles_iqr_last",
+    "thread_cycles_mad_last",
+    "thread_cycles_paired_q50_last",
+    "thread_cycles_round_wins_last"
+  ],
+  "detector_names": [
+    "tsc_ticks_peak",
+    "tsc_ticks_gap",
+    "tsc_ticks_separation",
+    "tsc_ticks_winner_consistency",
+    "wall_ns_peak",
+    "wall_ns_gap",
+    "wall_ns_separation",
+    "wall_ns_winner_consistency",
+    "thread_cycles_peak",
+    "thread_cycles_gap",
+    "thread_cycles_separation",
+    "thread_cycles_winner_consistency",
+    "last",
+    "depth"
+  ],
+  "model_type": "linear_group_softmax_plus_logistic_prefix_detector",
+  "weights": [
+    0.18005696473177962,
+    0.1641008535910474,
+    0.14193069456449064,
+    -0.09474734929138352,
+    -0.11753147168618007,
+    0.17027330539784113,
+    0.21167536226201267,
+    0.1778435920328966,
+    0.17330753578463504,
+    0.14803324580647143,
+    -0.16104670011973135,
+    0.04008337472797652,
+    0.17265246921024663,
+    0.18551929873025816,
+    0.1822619954548447,
+    0.17045857324760164,
+    0.1854437722420295,
+    0.09839160963893377,
+    0.05675025343354219,
+    0.1755637551261849,
+    0.1715224510334787,
+    -0.26696217001435124,
+    -0.2620973032198265,
+    -0.2572408511166514,
+    -0.1135449379875825,
+    -0.10977852046366175,
+    -0.2685285309187054,
+    -0.2540245009823424,
+    -0.27653233310118785,
+    -0.262258643655453,
+    -0.2604963249985014,
+    -0.14175738472135713,
+    0.2713767341643195,
+    -0.26705666528055355,
+    -0.26538842090579917,
+    -0.2701031788882032,
+    -0.2619415576319466,
+    -0.24613354553646707,
+    0.2614219284749763,
+    0.08847414873424612,
+    -0.27236971837455315,
+    -0.2756836840207141
+  ],
+  "l2": 0.0,
+  "detector_weights": [
+    -0.05581201665837032,
+    0.19265400844885153,
+    0.1654464703399381,
+    0.03418516860092814,
+    0.15853340189207468,
+    0.16329532385411677,
+    0.1305682429919144,
+    0.006154417804382586,
+    0.10011032960855971,
+    0.21337815625925588,
+    0.17618093754252045,
+    0.3325570751508743,
+    0.05596444791761695,
+    -0.08297168358149044,
+    -0.2452996618495509
+  ],
+  "detector_l2": 0.0,
+  "detector_threshold": 0.0,
+  "epochs": 5,
+  "seed": 7,
+  "created_utc": "2026-10-22T01:50:25.747355+00:00",
+  "training_platform": "Windows-11-10.0.26200-SP0",
+  "training_python": "3.14.0",
+  "dataset_manifest_sha256": "9e771ec9054f8d340457755bd9bb1a180b14a01e3605c00755b2b176e172b637",
+  "collection_config": {
+    "checker": "trie",
+    "passwords": 9,
+    "alphabet": "ab01",
+    "min_length": 4,
+    "max_length": 4,
+    "sessions": 1,
+    "min_samples": 4,
+    "max_samples": 8,
+    "warmup": 1,
+    "negative_prefixes": 1,
+    "cpu": 0,
+    "seed": 20261023,
+    "exclude_dataset": [],
+    "batch": 1000,
+    "checkpoints": [
+      4,
+      8
+    ],
+    "work": 0
+  },
+  "training_source_sha256": {
+    "lab_config.py": "ff48d50c43c8d61d8e2d2c3f3bf6ff20a6f675c7410c3d9fe75618c6041af4b3",
+    "recovery.py": "89a8dc43ac8eefb86dcc86e6620ce0ae1e9ba492f909563eb3f55c609dc88ee8",
+    "timing_model.py": "ce379dd8c783d6e3240f739d4f1ba302da25f8e9cac3c7109bbbe17bb371941e",
+    "splits.py": "004926cf45bbc2d489484f220f4c9635dcad961d9b40ab4368bca593ccaacdc4",
+    "research_pipeline.py": "b2775992829e7fe4f9151146e76168c346f8f872af8aa3fcd0c334478b748c16"
+  },
+  "train_password_ids": [
+    "6236d617108f6007",
+    "723c41e53c8e0bbe",
+    "7a0d1b3d4e43f08e",
+    "803b6819e7dca5ce",
+    "b08ed1c035158281",
+    "c59ee899081bebac"
+  ],
+  "validation_password_ids": [
+    "50879e6388fe5348",
+    "a2d0a6286b524c53"
+  ],
+  "validation_rank_experiments": [
+    {
+      "l2": 0.0,
+      "validation_character_metrics": {
+        "all": {
+          "groups": 8,
+          "model_correct": 6,
+          "median_correct": 7,
+          "model_accuracy": 0.75,
+          "median_accuracy": 0.875
+        },
+        "earlier": {
+          "groups": 6,
+          "model_correct": 6,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 1.0
+        },
+        "length_4": {
+          "groups": 8,
+          "model_correct": 6,
+          "median_correct": 7,
+          "model_accuracy": 0.75,
+          "median_accuracy": 0.875
+        },
+        "last": {
+          "groups": 2,
+          "model_correct": 0,
+          "median_correct": 1,
+          "model_accuracy": 0.0,
+          "median_accuracy": 0.5
+        }
+      }
+    },
+    {
+      "l2": 0.001,
+      "validation_character_metrics": {
+        "all": {
+          "groups": 8,
+          "model_correct": 6,
+          "median_correct": 7,
+          "model_accuracy": 0.75,
+          "median_accuracy": 0.875
+        },
+        "earlier": {
+          "groups": 6,
+          "model_correct": 6,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 1.0
+        },
+        "length_4": {
+          "groups": 8,
+          "model_correct": 6,
+          "median_correct": 7,
+          "model_accuracy": 0.75,
+          "median_accuracy": 0.875
+        },
+        "last": {
+          "groups": 2,
+          "model_correct": 0,
+          "median_correct": 1,
+          "model_accuracy": 0.0,
+          "median_accuracy": 0.5
+        }
+      }
+    },
+    {
+      "l2": 0.01,
+      "validation_character_metrics": {
+        "all": {
+          "groups": 8,
+          "model_correct": 6,
+          "median_correct": 7,
+          "model_accuracy": 0.75,
+          "median_accuracy": 0.875
+        },
+        "earlier": {
+          "groups": 6,
+          "model_correct": 6,
+          "median_correct": 6,
+          "model_accuracy": 1.0,
+          "median_accuracy": 1.0
+        },
+        "length_4": {
+          "groups": 8,
+          "model_correct": 6,
+          "median_correct": 7,
+          "model_accuracy": 0.75,
+          "median_accuracy": 0.875
+        },
+        "last": {
+          "groups": 2,
+          "model_correct": 0,
+          "median_correct": 1,
+          "model_accuracy": 0.0,
+          "median_accuracy": 0.5
+        }
+      }
+    }
+  ],
+  "validation_detector_experiments": [
+    {
+      "l2": 0.0,
+      "threshold": 0.0,
+      "validation": {
+        "valid_groups": 16,
+        "wrong_prefix_groups": 12,
+        "false_rejection_rate": 0.0,
+        "wrong_prefix_detection_rate": 0.0,
+        "balanced_accuracy": 0.5
+      }
+    },
+    {
+      "l2": 0.001,
+      "threshold": 0.0,
+      "validation": {
+        "valid_groups": 16,
+        "wrong_prefix_groups": 12,
+        "false_rejection_rate": 0.0,
+        "wrong_prefix_detection_rate": 0.0,
+        "balanced_accuracy": 0.5
+      }
+    },
+    {
+      "l2": 0.01,
+      "threshold": 0.0,
+      "validation": {
+        "valid_groups": 16,
+        "wrong_prefix_groups": 12,
+        "false_rejection_rate": 0.0,
+        "wrong_prefix_detection_rate": 0.0,
+        "balanced_accuracy": 0.5
+      }
+    }
+  ],
+  "test_used_for_selection": false,
+  "sampling_thresholds": {
+    "model": 2.0,
+    "median": 0.5
+  },
+  "sampling_validation": {
+    "model": {
+      "selected": {
+        "threshold": 2.0,
+        "correct": 6,
+        "groups": 8,
+        "samples_sum": 44
+      },
+      "trials": [
+        {
+          "threshold": 0.5,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 44
+        },
+        {
+          "threshold": 1.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 44
+        },
+        {
+          "threshold": 2.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 44
+        },
+        {
+          "threshold": 4.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 48
+        },
+        {
+          "threshold": 8.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 60
+        },
+        {
+          "threshold": 1000000000.0,
+          "correct": 6,
+          "groups": 8,
+          "samples_sum": 64
+        }
+      ]
+    },
+    "median": {
+      "selected": {
+        "threshold": 0.5,
+        "correct": 7,
+        "groups": 8,
+        "samples_sum": 44
+      },
+      "trials": [
+        {
+          "threshold": 0.5,
+          "correct": 7,
+          "groups": 8,
+          "samples_sum": 44
+        },
+        {
+          "threshold": 1.0,
+          "correct": 7,
+          "groups": 8,
+          "samples_sum": 48
+        },
+        {
+          "threshold": 2.0,
+          "correct": 7,
+          "groups": 8,
+          "samples_sum": 60
+        },
+        {
+          "threshold": 4.0,
+          "correct": 7,
+          "groups": 8,
+          "samples_sum": 64
+        },
+        {
+          "threshold": 8.0,
+          "correct": 7,
+          "groups": 8,
+          "samples_sum": 64
+        },
+        {
+          "threshold": 1000000000.0,
+          "correct": 7,
+          "groups": 8,
+          "samples_sum": 64
+        }
+      ]
+    }
+  }
+}

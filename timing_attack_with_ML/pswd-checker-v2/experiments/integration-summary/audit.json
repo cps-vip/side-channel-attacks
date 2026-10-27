@@ -1,0 +1,1122 @@
+{
+  "datasets": {
+    "integration-naive-r2": {
+      "shards": 36,
+      "split_counts": {
+        "train": 12,
+        "validation": 3,
+        "test": 3
+      },
+      "all_shard_checksums_valid": true,
+      "calls": {
+        "baseline": 720000,
+        "warmup": 11664000,
+        "timed": 139968000
+      }
+    },
+    "integration-staged": {
+      "shards": 9,
+      "split_counts": {
+        "train": 6,
+        "validation": 2,
+        "test": 1
+      },
+      "all_shard_checksums_valid": true,
+      "calls": {
+        "baseline": 180,
+        "warmup": 432,
+        "timed": 3456
+      }
+    },
+    "integration-library": {
+      "shards": 9,
+      "split_counts": {
+        "train": 6,
+        "validation": 2,
+        "test": 1
+      },
+      "all_shard_checksums_valid": true,
+      "calls": {
+        "baseline": 180000,
+        "warmup": 252000,
+        "timed": 2016000
+      }
+    },
+    "integration-trie": {
+      "shards": 9,
+      "split_counts": {
+        "train": 6,
+        "validation": 2,
+        "test": 1
+      },
+      "all_shard_checksums_valid": true,
+      "calls": {
+        "baseline": 180000,
+        "warmup": 252000,
+        "timed": 2016000
+      }
+    }
+  },
+  "evaluations": {
+    "integration-naive-r2": {
+      "runs": 60,
+      "raw_query_counts_match": true,
+      "all_budgets_respected": true,
+      "verification_matches_results": true,
+      "results": {
+        "naive/model/fixed": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340001,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.1852438000011413,
+          "macro_character_accuracy": 0.6277777777777778,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "naive/model/verify": {
+          "passwords": 3,
+          "recovered": 1,
+          "recovery_rate": 0.3333333333333333,
+          "wilson_95_interval": [
+            0.0614903152761605,
+            0.7923450448735121
+          ],
+          "mean_total_checker_calls": 1872030.3333333333,
+          "mean_timed_calls": 1728000,
+          "mean_warmup_calls": 144000,
+          "mean_verification_calls": 30.333333333333332,
+          "mean_elapsed_seconds": 0.1226427666648912,
+          "macro_character_accuracy": 0.6666666666666666,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "naive/model/adaptive": {
+          "passwords": 3,
+          "recovered": 3,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.43849391955098227,
+            1
+          ],
+          "mean_total_checker_calls": 1392022.3333333333,
+          "mean_timed_calls": 1248000,
+          "mean_warmup_calls": 144000,
+          "mean_verification_calls": 22.333333333333332,
+          "mean_elapsed_seconds": 0.19053499999184473,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "naive/model/beam": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340000,
+          "mean_timed_calls": 2112000,
+          "mean_warmup_calls": 228000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.26134149998930906,
+          "macro_character_accuracy": 0.23333333333333334,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "naive/model/full": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340000,
+          "mean_timed_calls": 2088000,
+          "mean_warmup_calls": 252000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.22218539999448694,
+          "macro_character_accuracy": 0.31666666666666665,
+          "backtracks": 0,
+          "detector_rejections": 4
+        },
+        "naive/median/fixed": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340001,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.2093782666779589,
+          "macro_character_accuracy": 0.7944444444444445,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "naive/median/verify": {
+          "passwords": 3,
+          "recovered": 1,
+          "recovery_rate": 0.3333333333333333,
+          "wilson_95_interval": [
+            0.0614903152761605,
+            0.7923450448735121
+          ],
+          "mean_total_checker_calls": 1872025.3333333333,
+          "mean_timed_calls": 1728000,
+          "mean_warmup_calls": 144000,
+          "mean_verification_calls": 25.333333333333332,
+          "mean_elapsed_seconds": 0.13657643332650574,
+          "macro_character_accuracy": 0.6444444444444444,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "naive/median/adaptive": {
+          "passwords": 3,
+          "recovered": 1,
+          "recovery_rate": 0.3333333333333333,
+          "wilson_95_interval": [
+            0.0614903152761605,
+            0.7923450448735121
+          ],
+          "mean_total_checker_calls": 1584024.6666666667,
+          "mean_timed_calls": 1440000,
+          "mean_warmup_calls": 144000,
+          "mean_verification_calls": 24.666666666666668,
+          "mean_elapsed_seconds": 0.1606127000025784,
+          "macro_character_accuracy": 0.5777777777777777,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "naive/median/beam": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340000,
+          "mean_timed_calls": 2124000,
+          "mean_warmup_calls": 216000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.24063576665745737,
+          "macro_character_accuracy": 0.28888888888888886,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "naive/median/full": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340000,
+          "mean_timed_calls": 2124000,
+          "mean_warmup_calls": 216000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.17760726665922752,
+          "macro_character_accuracy": 0.28888888888888886,
+          "backtracks": 0,
+          "detector_rejections": 1
+        },
+        "control/model/fixed": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340001,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.17048446667225411,
+          "macro_character_accuracy": 0.05555555555555555,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/verify": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 1872036,
+          "mean_timed_calls": 1728000,
+          "mean_warmup_calls": 144000,
+          "mean_verification_calls": 36,
+          "mean_elapsed_seconds": 0.1734828666667454,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/adaptive": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 1776036,
+          "mean_timed_calls": 1632000,
+          "mean_warmup_calls": 144000,
+          "mean_verification_calls": 36,
+          "mean_elapsed_seconds": 0.20604343332039812,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/beam": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340000,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.2808242666651495,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/full": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340000,
+          "mean_timed_calls": 2148000,
+          "mean_warmup_calls": 192000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.2462234666745644,
+          "macro_character_accuracy": 0.06666666666666667,
+          "backtracks": 0,
+          "detector_rejections": 2
+        },
+        "control/median/fixed": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340001,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.14993529998658536,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/verify": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 1872036,
+          "mean_timed_calls": 1728000,
+          "mean_warmup_calls": 144000,
+          "mean_verification_calls": 36,
+          "mean_elapsed_seconds": 0.19868123333435506,
+          "macro_character_accuracy": 0.08333333333333333,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/adaptive": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 1872036,
+          "mean_timed_calls": 1728000,
+          "mean_warmup_calls": 144000,
+          "mean_verification_calls": 36,
+          "mean_elapsed_seconds": 0.1984576000055919,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/beam": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340000,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.27767430000434007,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/full": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340000,
+          "mean_timed_calls": 2136000,
+          "mean_warmup_calls": 204000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.20323313334180662,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 5
+        }
+      }
+    },
+    "integration-naive-r2-basic18": {
+      "runs": 12,
+      "raw_query_counts_match": true,
+      "all_budgets_respected": true,
+      "verification_matches_results": true,
+      "results": {
+        "naive/model/fixed": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340001,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.1537573666719254,
+          "macro_character_accuracy": 0.7944444444444445,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "naive/median/fixed": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340001,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.14851753333156617,
+          "macro_character_accuracy": 0.7944444444444445,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/fixed": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340001,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.1882970333293391,
+          "macro_character_accuracy": 0.05555555555555555,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/fixed": {
+          "passwords": 3,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.5615060804490177
+          ],
+          "mean_total_checker_calls": 2340001,
+          "mean_timed_calls": 2160000,
+          "mean_warmup_calls": 180000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.15967853332404047,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        }
+      }
+    },
+    "integration-staged": {
+      "runs": 20,
+      "raw_query_counts_match": true,
+      "all_budgets_respected": true,
+      "verification_matches_results": true,
+      "results": {
+        "staged/model/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 289,
+          "mean_timed_calls": 256,
+          "mean_warmup_calls": 32,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.04275599998072721,
+          "macro_character_accuracy": 0.25,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "staged/model/verify": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 156,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 12,
+          "mean_elapsed_seconds": 0.010622700006933883,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "staged/model/adaptive": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 92,
+          "mean_timed_calls": 64,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 12,
+          "mean_elapsed_seconds": 0.005192200012970716,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "staged/model/beam": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 154,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 10,
+          "mean_elapsed_seconds": 0.02325220001512207,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "staged/model/full": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 147,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 3,
+          "mean_elapsed_seconds": 0.019919699989259243,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "staged/median/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 289,
+          "mean_timed_calls": 256,
+          "mean_warmup_calls": 32,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.030213799997000024,
+          "macro_character_accuracy": 0.75,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "staged/median/verify": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 158,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 14,
+          "mean_elapsed_seconds": 0.029270099999848753,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "staged/median/adaptive": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 85,
+          "mean_timed_calls": 64,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 5,
+          "mean_elapsed_seconds": 0.005556800024351105,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "staged/median/beam": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 156,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 12,
+          "mean_elapsed_seconds": 0.019276600010925904,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "staged/median/full": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 150,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 6,
+          "mean_elapsed_seconds": 0.016709199990145862,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 289,
+          "mean_timed_calls": 256,
+          "mean_warmup_calls": 32,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.021659899997757748,
+          "macro_character_accuracy": 0.75,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/verify": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 160,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 16,
+          "mean_elapsed_seconds": 0.016874299995834008,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/adaptive": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 160,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 16,
+          "mean_elapsed_seconds": 0.02663350000511855,
+          "macro_character_accuracy": 0.5,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/beam": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 192,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 48,
+          "mean_elapsed_seconds": 0.014562199998181313,
+          "macro_character_accuracy": 0.5,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/full": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 183,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 39,
+          "mean_elapsed_seconds": 0.01905030000489205,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 289,
+          "mean_timed_calls": 256,
+          "mean_warmup_calls": 32,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.016762400016887113,
+          "macro_character_accuracy": 0.5,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/verify": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 160,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 16,
+          "mean_elapsed_seconds": 0.008518999995430931,
+          "macro_character_accuracy": 0.25,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/adaptive": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 160,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 16,
+          "mean_elapsed_seconds": 0.03267580000101589,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/beam": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 192,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 48,
+          "mean_elapsed_seconds": 0.018325399985769764,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/full": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 192,
+          "mean_timed_calls": 128,
+          "mean_warmup_calls": 16,
+          "mean_verification_calls": 48,
+          "mean_elapsed_seconds": 0.017290799994952977,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        }
+      }
+    },
+    "integration-library": {
+      "runs": 8,
+      "raw_query_counts_match": true,
+      "all_budgets_respected": true,
+      "verification_matches_results": true,
+      "results": {
+        "library/model/fixed": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 144001,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.02589379998971708,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "library/model/full": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144000,
+          "mean_timed_calls": 124000,
+          "mean_warmup_calls": 20000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.008732300018891692,
+          "macro_character_accuracy": 0.5,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "library/median/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144001,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.020716500002890825,
+          "macro_character_accuracy": 0.75,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "library/median/full": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144000,
+          "mean_timed_calls": 124000,
+          "mean_warmup_calls": 20000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.015219599998090416,
+          "macro_character_accuracy": 0.5,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144001,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.005196199985221028,
+          "macro_character_accuracy": 0.25,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/full": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144000,
+          "mean_timed_calls": 124000,
+          "mean_warmup_calls": 20000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.011312699993140996,
+          "macro_character_accuracy": 0.25,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144001,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.01507100000162609,
+          "macro_character_accuracy": 0.5,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/full": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144000,
+          "mean_timed_calls": 124000,
+          "mean_warmup_calls": 20000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.007722000009380281,
+          "macro_character_accuracy": 0.25,
+          "backtracks": 0,
+          "detector_rejections": 0
+        }
+      }
+    },
+    "integration-trie": {
+      "runs": 8,
+      "raw_query_counts_match": true,
+      "all_budgets_respected": true,
+      "verification_matches_results": true,
+      "results": {
+        "trie/model/fixed": {
+          "passwords": 1,
+          "recovered": 1,
+          "recovery_rate": 1.0,
+          "wilson_95_interval": [
+            0.20654329147389294,
+            1
+          ],
+          "mean_total_checker_calls": 144001,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.012443799991160631,
+          "macro_character_accuracy": 1.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "trie/model/full": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144000,
+          "mean_timed_calls": 120000,
+          "mean_warmup_calls": 24000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.017188800004078075,
+          "macro_character_accuracy": 0.25,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "trie/median/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144001,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.019189099984942004,
+          "macro_character_accuracy": 0.75,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "trie/median/full": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144000,
+          "mean_timed_calls": 124000,
+          "mean_warmup_calls": 20000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.01480559998890385,
+          "macro_character_accuracy": 0.5,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144001,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.009504800022114068,
+          "macro_character_accuracy": 0.25,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/model/full": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144000,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.033483499981230125,
+          "macro_character_accuracy": 0.25,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/fixed": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144001,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 1,
+          "mean_elapsed_seconds": 0.01671080000232905,
+          "macro_character_accuracy": 0.25,
+          "backtracks": 0,
+          "detector_rejections": 0
+        },
+        "control/median/full": {
+          "passwords": 1,
+          "recovered": 0,
+          "recovery_rate": 0.0,
+          "wilson_95_interval": [
+            0,
+            0.7934567085261071
+          ],
+          "mean_total_checker_calls": 144000,
+          "mean_timed_calls": 128000,
+          "mean_warmup_calls": 16000,
+          "mean_verification_calls": 0,
+          "mean_elapsed_seconds": 0.012636300001759082,
+          "macro_character_accuracy": 0.0,
+          "backtracks": 0,
+          "detector_rejections": 0
+        }
+      }
+    }
+  }
+}

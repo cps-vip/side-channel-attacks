@@ -1,0 +1,19 @@
+name: Portable research tests
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Original checker tests
+        working-directory: naive-checker
+        run: python -m unittest -v
+      - name: V1 portable research tests
+        working-directory: pswd-checker-v1
+        run: python -m unittest -v
+      - name: V2 portable research tests
+        working-directory: pswd-checker-v2
+        run: python -m unittest -v

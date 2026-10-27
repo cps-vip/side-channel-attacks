@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="540pt" viewBox="0 0 864 540" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-21T23:31:50.767655</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 540 
+L 864 540 
+L 864 0 
+L 0 0 
+z
+" style="fill: #f4f7fb"/>
+  </g>
+  <g id="patch_2">
+   <path d="M 58.752 218.7 
+L 278.208 218.7 
+Q 293.76 218.7 293.76 208.98 
+L 293.76 125.82 
+Q 293.76 116.1 278.208 116.1 
+L 58.752 116.1 
+Q 43.2 116.1 43.2 125.82 
+L 43.2 208.98 
+Q 43.2 218.7 58.752 218.7 
+z
+" style="fill: #ffffff; stroke: #dce4ee; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_3">
+   <path d="M 326.592 218.7 
+L 546.048 218.7 
+Q 561.6 218.7 561.6 208.98 
+L 561.6 125.82 
+Q 561.6 116.1 546.048 116.1 
+L 326.592 116.1 
+Q 311.04 116.1 311.04 125.82 
+L 311.04 208.98 
+Q 311.04 218.7 326.592 218.7 
+z
+" style="fill: #ffffff; stroke: #dce4ee; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_4">
+   <path d="M 594.432 218.7 
+L 805.248 218.7 
+Q 820.8 218.7 820.8 208.98 
+L 820.8 125.82 
+Q 820.8 116.1 805.248 116.1 
+L 594.432 116.1 
+Q 578.88 116.1 578.88 125.82 
+L 578.88 208.98 
+Q 578.88 218.7 594.432 218.7 
+z
+" style="fill: #ffffff; stroke: #dce4ee; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_5">
+   <path d="M 58.752 313.2 
+L 213.408 313.2 
+Q 228.96 313.2 228.96 303.48 
+L 228.96 260.82 
+Q 228.96 251.1 213.408 251.1 
+L 58.752 251.1 
+Q 43.2 251.1 43.2 260.82 
+L 43.2 303.48 
+Q 43.2 313.2 58.752 313.2 
+z
+" style="fill: #ffffff; stroke: #dce4ee; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_6">
+   <path d="M 257.472 313.2 
+L 412.128 313.2 
+Q 427.68 313.2 427.68 303.48 
+L 427.68 260.82 
+Q 427.68 251.1 412.128 251.1 
+L 257.472 251.1 
+Q 241.92 251.1 241.92 260.82 
+L 241.92 303.48 
+Q 241.92 313.2 257.472 313.2 
+z
+" style="fill: #ffffff; stroke: #dce4ee; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_7">
+   <path d="M 456.192 313.2 
+L 610.848 313.2 
+Q 626.4 313.2 626.4 303.48 
+L 626.4 260.82 
+Q 626.4 251.1 610.848 251.1 
+L 456.192 251.1 
+Q 440.64 251.1 440.64 260.82 
+L 440.64 303.48 
+Q 440.64 313.2 456.192 313.2 
+z
+" style="fill: #ffffff; stroke: #dce4ee; stroke-linejoin: miter"/>
+  </g>
+  <g id="patch_8">
+   <path d="M 654.912 313.2 
+L 809.568 313.2 
+Q 825.12 313.2 825.12 303.48 
+L 825.12 260.82 
+Q 825.12 251.1 809.568 251.1 
+L 654.912 251.1 
+Q 639.36 251.1 639.36 260.82 
+L 639.36 303.48 
+Q 639.36 313.2 654.912 313.2 
+z
+" style="fill: #ffffff; stroke: #dce4ee; stroke-linejoin: miter"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_9">
+    <path d="M 64.8 417.076364 
+L 578.88 417.076364 
+L 578.88 377.803636 
+L 64.8 377.803636 
+z
+" clip-path="url(#pdce12fba3b)" style="fill: #008b8b; stroke: #f4f7fb; stroke-width: 3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 578.88 417.076364 
+L 689.04 417.076364 
+L 689.04 377.803636 
+L 578.88 377.803636 
+z
+" clip-path="url(#pdce12fba3b)" style="fill: #5268cf; stroke: #f4f7fb; stroke-width: 3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 689.04 417.076364 
+L 799.2 417.076364 
+L 799.2 377.803636 
+L 689.04 377.803636 
+z
+" clip-path="url(#pdce12fba3b)" style="fill: #da9a28; stroke: #f4f7fb; stroke-width: 3; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(302.9475 394.316516)">TRAIN</text>
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(291.276328 406.634109)">182 · 70%</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(596.794609 394.316516)">VALIDATION</text>
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; fill: #ffffff" transform="translate(607.223125 406.634109)">39 · 15%</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; fill: #14283f" transform="translate(728.897891 394.316516)">TEST</text>
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; fill: #14283f" transform="translate(717.383125 406.634109)">39 · 15%</text>
+   </g>
+  </g>
+  <g id="patch_12">
+   <path d="M 228.371906 282.15 
+Q 235.008578 282.15 240.080003 282.15 
+" style="fill: none; stroke: #586c83; stroke-width: 1.4; stroke-linecap: round"/>
+   <path d="M 234.080003 279.15 
+L 240.080003 282.15 
+L 234.080003 285.15 
+z
+" style="fill: #586c83; stroke: #586c83; stroke-width: 1.4; stroke-linecap: round"/>
+  </g>
+  <g id="patch_13">
+   <path d="M 427.091906 282.15 
+Q 433.728578 282.15 438.800003 282.15 
+" style="fill: none; stroke: #586c83; stroke-width: 1.4; stroke-linecap: round"/>
+   <path d="M 432.800003 279.15 
+L 438.800003 282.15 
+L 432.800003 285.15 
+z
+" style="fill: #586c83; stroke: #586c83; stroke-width: 1.4; stroke-linecap: round"/>
+  </g>
+  <g id="patch_14">
+   <path d="M 625.811906 282.15 
+Q 632.448578 282.15 637.520003 282.15 
+" style="fill: none; stroke: #586c83; stroke-width: 1.4; stroke-linecap: round"/>
+   <path d="M 631.520003 279.15 
+L 637.520003 282.15 
+L 631.520003 285.15 
+z
+" style="fill: #586c83; stroke: #586c83; stroke-width: 1.4; stroke-linecap: round"/>
+  </g>
+  <g id="text_4">
+   <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #008b8b" x="47.52" y="25.92" transform="rotate(-0 47.52 25.92)">V1 / NOTEBOOK ENTRY 1</text>
+  </g>
+  <g id="text_5">
+   <text style="font-weight: 700; font-size: 25px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #14283f" x="47.52" y="57.78" transform="rotate(-0 47.52 57.78)">Collecting data without split leakage</text>
+  </g>
+  <g id="text_6">
+   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="47.52" y="81" transform="rotate(-0 47.52 81)">Synthetic lowercase/digit passwords | lengths 4–16 | no artificial timing amplification</text>
+  </g>
+  <g id="text_7">
+   <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="47.52" y="522.72" transform="rotate(-0 47.52 522.72)">Source: v1 datasets/cmd-run-01/manifest.json. Batch totals are correlated measurements, not independent calls.</text>
+  </g>
+  <g id="text_8">
+   <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="63.072" y="142.02" transform="rotate(-0 63.072 142.02)">UNIQUE PASSWORDS</text>
+  </g>
+  <g id="text_9">
+   <text style="font-weight: 700; font-size: 27px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #008b8b" x="63.072" y="177.66" transform="rotate(-0 63.072 177.66)">260</text>
+  </g>
+  <g id="text_10">
+   <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="63.072" y="203.04" transform="rotate(-0 63.072 203.04)">20 synthetic passwords per length</text>
+  </g>
+  <g id="text_11">
+   <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="330.912" y="142.02" transform="rotate(-0 330.912 142.02)">TIMING BATCHES</text>
+  </g>
+  <g id="text_12">
+   <text style="font-weight: 700; font-size: 27px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5268cf" x="330.912" y="177.66" transform="rotate(-0 330.912 177.66)">7.488 million</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="330.912" y="203.04" transform="rotate(-0 330.912 203.04)">1,000 checker calls per batch</text>
+  </g>
+  <g id="text_14">
+   <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="598.752" y="142.02" transform="rotate(-0 598.752 142.02)">COLLECTION ROUNDS</text>
+  </g>
+  <g id="text_15">
+   <text style="font-weight: 700; font-size: 27px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #da9a28" x="598.752" y="177.66" transform="rotate(-0 598.752 177.66)">2</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="598.752" y="203.04" transform="rotate(-0 598.752 203.04)">40 batches / candidate / position</text>
+  </g>
+  <g id="text_17">
+   <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #14283f" x="57.888" y="272.7" transform="rotate(-0 57.888 272.7)">Generate secrets</text>
+  </g>
+  <g id="text_18">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="57.888" y="299.7" transform="rotate(-0 57.888 299.7)">Known length and alphabet</text>
+  </g>
+  <g id="text_19">
+   <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #14283f" x="256.608" y="272.7" transform="rotate(-0 256.608 272.7)">Assign splits</text>
+  </g>
+  <g id="text_20">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="256.608" y="299.7" transform="rotate(-0 256.608 299.7)">Before timing collection</text>
+  </g>
+  <g id="text_21">
+   <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #14283f" x="455.328" y="272.7" transform="rotate(-0 455.328 272.7)">Measure in C</text>
+  </g>
+  <g id="text_22">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="455.328" y="299.7" transform="rotate(-0 455.328 299.7)">TSC · QPC · thread cycles</text>
+  </g>
+  <g id="text_23">
+   <text style="font-weight: 700; font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #14283f" x="654.048" y="272.7" transform="rotate(-0 654.048 272.7)">Save results</text>
+  </g>
+  <g id="text_24">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="654.048" y="299.7" transform="rotate(-0 654.048 299.7)">Raw CSV + experiment JSON</text>
+  </g>
+  <g id="text_25">
+   <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #14283f" x="47.52" y="342.9" transform="rotate(-0 47.52 342.9)">Split whole passwords, never individual timing rows</text>
+  </g>
+  <g id="text_26">
+   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="64.8" y="450.36" transform="rotate(-0 64.8 450.36)">All positions, repeated batches and collection rounds for one password stay in one split.</text>
+  </g>
+  <g id="text_27">
+   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586c83" x="64.8" y="479.52" transform="rotate(-0 64.8 479.52)">Training fits weights. Validation selects settings. Test passwords remain held out.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pdce12fba3b">
+   <rect x="64.8" y="375.84" width="734.4" height="43.2"/>
+  </clipPath>
+ </defs>
+</svg>

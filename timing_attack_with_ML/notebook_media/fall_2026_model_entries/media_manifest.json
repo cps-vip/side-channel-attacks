@@ -1,0 +1,63 @@
+{
+  "generated_utc": "2026-10-22T03:31:53.531574+00:00",
+  "source_files": {
+    "v1_manifest": {
+      "path": "pswd-checker-v1/datasets/cmd-run-01/manifest.json",
+      "sha256": "21816a9c854b57ca6d62ff020d393ac37e42583444b519430379dae5855468fc"
+    },
+    "v1_model": {
+      "path": "pswd-checker-v1/models/cmd-run-01.json",
+      "sha256": "f478e505f090262409d0d84f392123c750820b383acef71ff8d3e55959782442"
+    },
+    "v1_report": {
+      "path": "pswd-checker-v1/research_results/cmd-run-01/report.json",
+      "sha256": "d4bb044456e165d33efa6d99f063cd44b888c6ca1719ffecb421ca6028b36bd3"
+    },
+    "v2_manifest": {
+      "path": "pswd-checker-v2/datasets/v2-run-01/manifest.json",
+      "sha256": "99a270445615ada0514d3066e536911d000ca242047b7beaa325c46b85b801ea"
+    },
+    "v2_report": {
+      "path": "pswd-checker-v2/research_results/v2-run-01/report.json",
+      "sha256": "3a4c8953cb581dd64b0d52aeabe21f0c7cdd7c8df57d132912b5d6ff9c649a83"
+    },
+    "v2_basic": {
+      "path": "pswd-checker-v2/research_results/v2-run-01-basic18/report.json",
+      "sha256": "11819a6a1deda615ec71c060ff535a7821272ac4f18179b6f887decd77c147b1"
+    }
+  },
+  "animation_secret_id": "5bf1cee5a2ab56e3",
+  "animation_guess": "t767",
+  "figures": [
+    {
+      "entry": "10/12/2026 \u2014 Entry 1",
+      "png": "10_12_entry_1_v1_dataset.png",
+      "svg": "10_12_entry_1_v1_dataset.svg",
+      "caption": "Collected synthetic timing data and split whole passwords before measurement."
+    },
+    {
+      "entry": "10/12/2026 \u2014 Entry 2",
+      "png": "10_12_entry_2_v1_training.png",
+      "svg": "10_12_entry_2_v1_training.svg",
+      "caption": "Trained the v1 timing ranker and selected regularization using validation data."
+    },
+    {
+      "entry": "10/12/2026 \u2014 Entry 3",
+      "png": "10_12_entry_3_v1_recovery.png",
+      "svg": "10_12_entry_3_v1_recovery.svg",
+      "caption": "Compared held-out recovery with median ranking and the fixed-work control."
+    },
+    {
+      "entry": "10/19/2026 \u2014 Entry 1",
+      "png": "10_19_entry_1_v2_design.png",
+      "svg": "10_19_entry_1_v2_design.svg",
+      "caption": "Implemented v2 measurement/search components with separate ablations and query caps."
+    },
+    {
+      "entry": "10/19/2026 \u2014 Entry 2",
+      "png": "10_19_entry_2_v2_results.png",
+      "svg": "10_19_entry_2_v2_results.svg",
+      "caption": "Compared v2 recovery, query costs, feature sets and prefix-detector limitations."
+    }
+  ]
+}
