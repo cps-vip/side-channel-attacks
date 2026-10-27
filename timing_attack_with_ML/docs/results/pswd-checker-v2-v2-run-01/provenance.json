@@ -1,0 +1,11 @@
+{
+  "source_run": "pswd-checker-v2/research_results/v2-run-01",
+  "copied_on": "2026-10-27",
+  "new_measurements_performed": false,
+  "report_sha256": "3a4c8953cb581dd64b0d52aeabe21f0c7cdd7c8df57d132912b5d6ff9c649a83",
+  "markdown_sha256": "3eb8572240444f9cdca8d9cde8fa8c7e8127cb602dbc7fbbcbf789285148e5ae",
+  "model_relative_path": "pswd-checker-v2/models/v2-run-01.json",
+  "model_sha256": "1b77ff9bbfdafacde9beca83f699bd7cae88028c6714af5b878e8b7fe2b5e6fd",
+  "dataset_manifest_sha256": "99a270445615ada0514d3066e536911d000ca242047b7beaa325c46b85b801ea",
+  "availability": "Raw dataset and DLL not included. report.json retains original metadata and detailed outcomes."
+}

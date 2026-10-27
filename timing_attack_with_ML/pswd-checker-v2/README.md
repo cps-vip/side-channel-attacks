@@ -11,11 +11,13 @@ These pilots do not establish that v2 improves on v1.
 
 ## Run in Command Prompt
 
+From the repository root, enter the version folder using the commands below.
+
 Collection and fresh recovery require Windows 10/11 x64, RDTSCP/invariant TSC,
 and the native DLL. Training uses portable Python. Run commands individually:
 
 ```cmd
-cd /d "C:\Users\alyaa\OneDrive\Desktop\Comp Sci\VIP\pswd-checker-v2"
+cd timing_attack_with_ML\pswd-checker-v2
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\build_native.ps1"
 python -m unittest -v
 ```

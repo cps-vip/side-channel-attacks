@@ -60,3 +60,11 @@ Evaluate hardware platforms for performing physical power analysis:
 - **Python** — CPA simulation, power trace analysis
 - **NumPy, Matplotlib** — statistical analysis & visualization
 - Hardware TBD (ChipWhisperer / RPi / STM32)
+
+## Password timing analysis with machine learning
+
+The `timing-with-ML` branch adds a separate C/Python research pipeline under
+[`timing_attack_with_ML`](timing_attack_with_ML/README.md). Start with that README
+for Windows prerequisites, native builds, naive/V1/V2 experiments, CPU model
+training, saved results, limitations, and troubleshooting. Existing Rust and
+AES projects above remain separate.

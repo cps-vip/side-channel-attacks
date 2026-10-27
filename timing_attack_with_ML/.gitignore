@@ -20,3 +20,6 @@ research_results/
 .test-research-*/
 .slide-build/
 results/
+# Keep curated report snapshots while ignoring raw experiment outputs.
+!docs/results/
+!docs/results/**

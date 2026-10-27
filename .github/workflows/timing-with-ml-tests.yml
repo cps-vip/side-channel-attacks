@@ -1,0 +1,16 @@
+name: Timing with ML portable tests
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [naive-checker, pswd-checker-v1, pswd-checker-v2]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Run portable tests
+        working-directory: timing_attack_with_ML/${{ matrix.version }}
+        run: python -m unittest -v
