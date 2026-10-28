@@ -1,9 +1,26 @@
 # Password timing research v2
 
+## Linux pilot
+
+Linux x86-64 now has a native backend for the naive checker, fixed-work control,
+and empty baseline. Start with [LINUX_RUNBOOK.md](LINUX_RUNBOOK.md) for build,
+native tests, randomized prefix diagnostics, and the fixed-sample ML/median pilot.
+Linux requires `work=0` and records thread CPU **nanoseconds**, with a distinct
+dataset/model schema; Windows artifacts are not interchangeable with Linux runs.
+Training from either schema remains portable. The Windows instructions below
+still apply to the original backend and its additional checker variants.
+
+The [October 28 user-run report](../docs/results/linux-pilot-2026-10-28/README.md)
+records a complete 18-password pilot: fixed-sample ML 3/3 held-out recoveries,
+median 2/3, and 0/3 for each control. This is a small integration check. Use the
+runbook's Linux commands and `--ablations fixed --methods model,median` for the
+first experiment; the Windows examples below run additional configurations.
+
 V2 implements adaptive sampling, budgeted beam search and backtracking,
 supervised wrong-prefix detection, richer timing features, and final-unit
 verification for both model and median ranking. V1 remains frozen in
-`../pswd-checker-v1`. No GPU or third-party Python packages are required.
+`../pswd-checker-v1`. No GPU or third-party Python packages are required for
+collection, training, or evaluation; Linux diagnostic plots use Matplotlib.
 
 Completed integration checks, including unsuccessful ablations and limitations,
 are recorded in [experiments/integration-summary](experiments/integration-summary/README.md).

@@ -9,6 +9,9 @@ __pycache__/
 venv/
 # Rebuild native artifacts from the committed C source.
 *.dll
+*.so
+native_linux.build.json
+diagnostics/
 *.obj
 *.lib
 *.exp

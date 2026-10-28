@@ -1,6 +1,16 @@
 # Saved result snapshots
 
-These are unchanged copies of earlier local reports, added for review on a fresh clone. No new collection or recovery was performed while documenting this branch.
+The Windows entries below are unchanged copies of earlier local reports. The
+Linux entries record the initial port validation and the user's subsequent run.
+
+- [Linux V2 user-run pilot / October 28, 2026](linux-pilot-2026-10-28/README.md):
+  two diagnostic runs, a complete 36-shard dataset, and held-out ML/median results;
+  [generated report](linux-pilot-2026-10-28/REPORT.md),
+  [machine-readable report](linux-pilot-2026-10-28/report.json).
+
+- [Linux V2 pilot / October 27, 2026](linux-pilot-2026-10-27/README.md): native test status,
+  known-prefix plots, [generated report](linux-pilot-2026-10-27/REPORT.md), and
+  [machine-readable report](linux-pilot-2026-10-27/report.json).
 
 - [pswd-checker-v1 / cmd-run-01](pswd-checker-v1-cmd-run-01/REPORT.md): [machine-readable report](pswd-checker-v1-cmd-run-01/report.json), [provenance](pswd-checker-v1-cmd-run-01/provenance.json).
 - [pswd-checker-v2 / v2-run-01](pswd-checker-v2-v2-run-01/REPORT.md): [machine-readable report](pswd-checker-v2-v2-run-01/report.json), [provenance](pswd-checker-v2-v2-run-01/provenance.json).

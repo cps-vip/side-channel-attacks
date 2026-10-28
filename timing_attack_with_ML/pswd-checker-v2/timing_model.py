@@ -23,7 +23,7 @@ def clip(x):
     return max(-20.0, min(20.0, x))
 
 
-def features(rounds, last, depth):
+def features(rounds, last, depth, metrics=METRICS):
     """Rows contain aligned candidate readings or None for endpoint migration.
 
     No candidate bytes, identities, labels, or secret enter this function.
@@ -33,7 +33,7 @@ def features(rounds, last, depth):
     result = [[] for _ in range(count)]
     detector = []
     median_tsc = []
-    for metric in METRICS:
+    for metric in metrics:
         values = [[r[i][metric] for r in rounds if r[i] is not None] for i in range(count)]
         if any(not row for row in values):
             raise ValueError('a candidate has no retained samples')

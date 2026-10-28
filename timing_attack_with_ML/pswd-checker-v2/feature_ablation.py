@@ -45,7 +45,7 @@ def train_basic(dataset, base_path, output, epochs=20, seed=7):
     model.update(weights=best[1], l2=best[2], epochs=epochs, seed=seed, created_utc=now(),
                  model_type='basic18_group_softmax_plus_frozen_prefix_detector',
                  validation_rank_experiments=experiments,
-                 feature_ablation={'active_features': [FEATURE_NAMES[i] for i in BASIC_INDICES],
+                 feature_ablation={'active_features': [manifest['feature_names'][i] for i in BASIC_INDICES],
                                    'base_model_sha256': digest(base_path),
                                    'script_sha256': digest(Path(__file__)),
                                    'detector_frozen_from_base': True})

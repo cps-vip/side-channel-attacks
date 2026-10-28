@@ -1,0 +1,28 @@
+{
+  "run_id": "20261028T180716Z",
+  "date_local": "2026-10-28",
+  "timezone": "America/New_York",
+  "server_root": "/home/cgossmann3/timing-ml-linux-pilot.Xa3ai86N/pswd-checker-v2",
+  "dataset_path": "datasets/20261028T180716Z-pilot",
+  "model_path": "models/20261028T180716Z-pilot.json",
+  "evaluation_path": "research_results/20261028T180716Z-pilot",
+  "diagnostic_paths": [
+    "diagnostics/20261028T180716Z-a",
+    "diagnostics/20261028T180716Z-b"
+  ],
+  "dataset_manifest_sha256": "1c9da83949152b3b14cf2262f46409f30ddd2d9e5d531069132d4df9b0a958fc",
+  "model_sha256": "2c5a17154cdf34912d1f773802de2a02a47cf0e6d84ed3c5a34a51cfe8e6578b",
+  "report_sha256": "35f0b52caa44f9317273828ce3fd72a34a12cc6241bcc67fb9f58271e46af02d",
+  "audit": {
+    "complete": true,
+    "shards": 36,
+    "collection_calls": 152352000,
+    "evaluation_runs": 12,
+    "evaluation_calls": 28080012,
+    "raw_and_feature_checksums_verified": true,
+    "raw_batch_sums_and_verification_counts_verified": true,
+    "current_native_and_source_fingerprints_match": true,
+    "secrets_disjoint_from_previous_pilot": true
+  },
+  "availability": "Selected reports and plots are copied here. Complete data, model, native build and source are retained on the server."
+}

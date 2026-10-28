@@ -5,12 +5,19 @@ import statistics
 import time
 
 from timing_model import METRICS, features, prefix_score, rank
+from experiment_schema import config_schema
 
 CHECKERS = {'naive': 0, 'library': 3, 'trie': 4, 'staged': 5}
 RAW_COLUMNS = ['secret_id', 'split', 'session_id', 'phase', 'checker', 'method',
                'position', 'prefix_hex', 'sample', 'candidate_index', 'candidate_hex',
                'batch', 'wall_ns_total', 'tsc_ticks_total', 'thread_cycles_total',
                'aux_start', 'aux_end', 'endpoint_migration', 'measurement_kind']
+
+
+def raw_columns(config):
+    columns = list(RAW_COLUMNS)
+    columns[14] = config_schema(config)['metrics'][2] + '_total'
+    return columns
 
 
 class BudgetExhausted(Exception):
@@ -54,9 +61,10 @@ def positions(length, checker):
     return list(range(0, length, 2 if checker == 'staged' else 1))
 
 
-def write_reading(writer, context, prefix, position, sample, index, guess, batch, result, kind):
+def write_reading(writer, context, prefix, position, sample, index, guess, batch, result, kind,
+                  metrics=METRICS):
     writer.writerow([*context, position, prefix.hex(), sample, index, guess.hex(), batch,
-                     result.wall_ns, result.tsc_ticks, result.thread_cycles,
+                     result.wall_ns, result.tsc_ticks, getattr(result, metrics[2]),
                      result.aux_start, result.aux_end,
                      int(result.aux_start != result.aux_end), kind])
 
@@ -69,13 +77,14 @@ class Sampler:
         self.guesses = [prefix + unit + sentinel * (length - len(prefix) - len(unit))
                         for unit in self.candidates]
         self.length, self.config, self.rng = length, config, rng
+        self.metrics = config_schema(config)['metrics']
         self.writer, self.context, self.rounds = writer, context, []
         # Warmups are charged and retained as raw data, excluded from features.
         for i, guess in enumerate(self.guesses):
             for sample in range(config['warmup']):
                 result = budget.measure(guess, config['batch'], warmup=True)
                 write_reading(writer, context, prefix, self.position, sample, i, guess,
-                              config['batch'], result, 'warmup')
+                              config['batch'], result, 'warmup', self.metrics)
 
     def extend(self, target):
         batch = self.config['batch']
@@ -87,12 +96,12 @@ class Sampler:
             for i in order:
                 result = self.budget.measure(self.guesses[i], batch)
                 write_reading(self.writer, self.context, self.prefix, self.position,
-                              sample, i, self.guesses[i], batch, result, 'timed')
+                              sample, i, self.guesses[i], batch, result, 'timed', self.metrics)
                 if result.aux_start == result.aux_end:
-                    row[i] = {metric: getattr(result, metric) / batch for metric in METRICS}
+                    row[i] = {metric: getattr(result, metric) / batch for metric in self.metrics}
             self.rounds.append(row)
         last = len(self.prefix) + len(self.candidates[0]) == self.length
-        return features(self.rounds, last, len(self.prefix) / self.length)
+        return features(self.rounds, last, len(self.prefix) / self.length, self.metrics)
 
 
 ABLATIONS = {

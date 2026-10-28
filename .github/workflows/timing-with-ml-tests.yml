@@ -14,3 +14,21 @@ jobs:
       - name: Run portable tests
         working-directory: timing_attack_with_ML/${{ matrix.version }}
         run: python -m unittest -v
+  native-linux:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: timing_attack_with_ML/pswd-checker-v2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build Linux native backend
+        run: sh build_native.sh
+      - name: Run actual native tests and portable tests
+        run: python -m unittest -v
+      - name: Install diagnostic plotting dependency
+        run: python -m pip install 'matplotlib>=3.8,<4'
+      - name: Smoke-test diagnostic and plots
+        run: python diagnose_linux.py --rounds 4 --batch 1000 --output diagnostics/ci

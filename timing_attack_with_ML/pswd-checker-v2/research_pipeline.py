@@ -7,6 +7,7 @@ import gzip
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import platform
 import random
@@ -15,7 +16,8 @@ import time
 import zipfile
 
 from lab_config import DEFAULT_ALPHABET, validate_alphabet
-from recovery import (ABLATIONS, CHECKERS, RAW_COLUMNS, Budget, Sampler,
+from experiment_schema import LINUX, WINDOWS, config_schema, native_backend, require_checker, schema_for
+from recovery import (ABLATIONS, CHECKERS, RAW_COLUMNS, Budget, Sampler, raw_columns,
                       default_timing_budget, positions, recover, units, write_reading)
 from splits import audit_manifest, make_secrets
 from timing_model import (DETECTOR_NAMES, FEATURE_NAMES, FEATURE_VERSION, character_metrics,
@@ -23,8 +25,12 @@ from timing_model import (DETECTOR_NAMES, FEATURE_NAMES, FEATURE_VERSION, charac
                           detector_metrics, fit)
 
 ROOT = Path(__file__).resolve().parent
-CORE_FILES = ('lab_config.py', 'native_attack.py', 'native_windows.c', 'native_windows.dll',
+CORE_FILES = ('lab_config.py', 'native_attack.py', 'experiment_schema.py', 'feature_ablation.py',
               'recovery.py', 'timing_model.py', 'splits.py', 'research_pipeline.py')
+NATIVE_FILES = {
+    WINDOWS: ('native_windows.c', 'native_windows.dll', 'build_native.ps1'),
+    LINUX: ('native_linux.c', 'native_linux.so', 'build_native.sh', 'native_linux.build.json'),
+}
 
 
 def now():
@@ -39,8 +45,27 @@ def digest(path):
     return h.hexdigest()
 
 
-def sources():
-    return {name: digest(ROOT / name) for name in CORE_FILES}
+def sources(backend=None):
+    backend = backend or native_backend()
+    return {name: digest(ROOT / name) for name in (*CORE_FILES, *NATIVE_FILES[backend])}
+
+
+def schema_metadata(schema):
+    return {key: schema[key] for key in ('measurement_backend', 'schema_version', 'feature_version',
+                                        'feature_names', 'detector_names', 'metric_units')}
+
+
+def manifest_schema(manifest):
+    schema = config_schema(manifest['config'])
+    if (manifest.get('schema_version') != schema['schema_version'] or
+            manifest.get('feature_names') != schema['feature_names'] or
+            manifest.get('detector_names') != schema['detector_names'] or
+            manifest.get('feature_version', 2) != schema['feature_version']):
+        raise ValueError('incompatible dataset measurement/feature schema')
+    if schema['measurement_backend'] == LINUX and any(
+            manifest.get(key) != value for key, value in schema_metadata(schema).items()):
+        raise ValueError('Linux datasets require explicit backend, feature version and metric units')
+    return schema
 
 
 def replace(source, target):
@@ -100,6 +125,9 @@ def exclusions(extra):
 
 def collect(args):
     from native_attack import NativeLab
+    backend = native_backend()
+    require_checker(backend, args.checker)
+    schema = schema_for(backend)
     alphabet = args.alphabet.encode('ascii')
     validate_alphabet(alphabet)
     if not 4 <= args.min_length <= args.max_length <= 16:
@@ -112,13 +140,15 @@ def collect(args):
     config = {k: getattr(args, k) for k in ('checker', 'passwords', 'alphabet', 'min_length',
               'max_length', 'sessions', 'min_samples', 'max_samples', 'warmup',
               'negative_prefixes', 'cpu', 'seed', 'exclude_dataset')}
-    config.update(batch=batch, checkpoints=checkpoints(args.min_samples, args.max_samples), work=0)
+    config.update(batch=batch, checkpoints=checkpoints(args.min_samples, args.max_samples), work=0,
+                  measurement_backend=backend)
     output = output_path(args.output)
     source_hashes = sources()
     if args.resume:
         manifest = json.loads((output / 'manifest.json').read_text(encoding='utf-8'))
         if manifest['config'] != config or manifest['source_sha256'] != source_hashes:
-            raise ValueError('resume requires identical settings and source/DLL hashes')
+            raise ValueError('resume requires identical settings and source/native-library hashes')
+        manifest_schema(manifest)
     else:
         if output.exists():
             raise ValueError('dataset already exists; use --resume or a fresh output name')
@@ -126,13 +156,14 @@ def collect(args):
         passwords = make_secrets(args.passwords, args.alphabet, args.min_length,
                                  args.max_length, args.seed, excluded)
         output.mkdir(parents=True)
-        manifest = {'schema_version': 2, 'feature_version': FEATURE_VERSION,
-                    'feature_names': FEATURE_NAMES, 'detector_names': DETECTOR_NAMES,
+        manifest = {**schema_metadata(schema),
                     'config': config, 'passwords': passwords,
                     'excluded_manifests': excluded_sources,
                     'excluded_password_ids': sorted(hashlib.sha256(s.encode()).hexdigest()[:16] for s in excluded),
                     'source_sha256': source_hashes, 'created_utc': now(),
                     'platform': platform.platform(), 'processor': platform.processor(),
+                    'hostname': platform.node(), 'machine': platform.machine(),
+                    'allowed_cpus': sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None,
                     'python': platform.python_version(), 'notes': args.notes,
                     'shards': {}, 'complete': False}
         save(output / 'manifest.json', manifest)
@@ -171,12 +202,12 @@ def collect(args):
             with gzip.open(raw_tmp, 'wt', newline='', encoding='utf-8') as stream, \
                     gzip.open(derived_tmp, 'wt', encoding='utf-8') as feature_stream:
                 writer = csv.writer(stream)
-                writer.writerow(RAW_COLUMNS)
+                writer.writerow(raw_columns(config))
                 baseline_context = [entry['secret_id'], entry['split'], session_id, 'baseline', 'empty', 'baseline']
                 for i in range(20):
                     reading = lab.measure(secret, 2, batch)
                     write_reading(writer, baseline_context, b'', -1, i, -1, secret,
-                                  batch, reading, 'baseline')
+                                  batch, reading, 'baseline', schema['metrics'])
                 for position in positions(len(secret), args.checker):
                     prefix = secret[:position]
                     prefixes = [('correct', prefix, True)]
@@ -211,7 +242,9 @@ def collect(args):
                                   'secret_id': entry['secret_id'], 'split': entry['split'],
                                   'session_id': session_id, 'groups': groups,
                                   'started_utc': shard_started, 'finished_utc': now(),
-                                  'calls': budget.counts(), 'baseline_checker_calls': 20 * batch}
+                                  'baseline_checker_calls': 20 * batch,
+                                  'calls': {**budget.counts(), 'baseline_checker_calls': 20 * batch,
+                                            'total_checker_calls': budget.counts()['total_checker_calls'] + 20 * batch}}
         save(output / 'manifest.json', manifest)
         done += 1
         remaining = len(tasks) - len(manifest['shards'])
@@ -230,9 +263,9 @@ def collect(args):
 def load_manifest(dataset):
     manifest = json.loads((dataset / 'manifest.json').read_text(encoding='utf-8'))
     audit_manifest(manifest)
-    if (manifest.get('schema_version') != 2 or not manifest['complete'] or
-            manifest['feature_names'] != FEATURE_NAMES or manifest['detector_names'] != DETECTOR_NAMES):
-        raise ValueError('incomplete or incompatible v2 dataset')
+    manifest_schema(manifest)
+    if not manifest['complete']:
+        raise ValueError('incomplete v2 dataset')
     expected = {f'{p["secret_id"]}-r{r}' for p in manifest['passwords']
                 for r in range(manifest['config']['sessions'])}
     if expected != set(manifest['shards']):
@@ -319,8 +352,7 @@ def train(args):
         detector_experiments.append({'l2': l2, 'threshold': threshold, 'validation': detector_result})
         if detector_best is None or detector_result['balanced_accuracy'] > detector_best[0]:
             detector_best = detector_result['balanced_accuracy'], detector_weights, threshold, l2
-    model = {'schema_version': 2, 'feature_version': FEATURE_VERSION,
-             'feature_names': FEATURE_NAMES, 'detector_names': DETECTOR_NAMES,
+    model = {**schema_metadata(config_schema(manifest['config'])),
              'model_type': 'linear_group_softmax_plus_logistic_prefix_detector',
              'weights': best[1], 'l2': best[2], 'detector_weights': detector_best[1],
              'detector_l2': detector_best[3], 'detector_threshold': detector_best[2],
@@ -344,8 +376,7 @@ def train(args):
 
 
 def sources_for_training():
-    return {name: digest(ROOT / name) for name in CORE_FILES if name not in
-            ('native_windows.c', 'native_windows.dll', 'native_attack.py')}
+    return {name: digest(ROOT / name) for name in CORE_FILES if name != 'native_attack.py'}
 
 
 def wilson(successes, n):
@@ -360,17 +391,24 @@ def evaluate(args):
     from native_attack import NativeLab
     dataset, output = Path(args.dataset).resolve(), output_path(args.output)
     manifest = load_manifest(dataset)
+    backend = native_backend()
+    schema = config_schema(manifest['config'])
+    if backend != schema['measurement_backend']:
+        raise ValueError('fresh evaluation must use the dataset measurement backend; collect a new dataset here')
+    require_checker(backend, manifest['config']['checker'])
     model_path = Path(args.model).resolve()
     model = json.loads(model_path.read_text(encoding='utf-8'))
     if model['dataset_manifest_sha256'] != digest(dataset / 'manifest.json'):
         raise ValueError('model/dataset fingerprint mismatch')
     if sources() != manifest['source_sha256']:
-        raise ValueError('source or DLL changed since collection; collect a new versioned dataset')
+        raise ValueError('source or native library changed since collection; collect a new versioned dataset')
     if any(value != manifest['source_sha256'].get(name)
            for name, value in model['training_source_sha256'].items()):
         raise ValueError('training code differs from the collected experiment version')
-    if (model.get('schema_version') != 2 or model['feature_names'] != FEATURE_NAMES or
-            model['detector_names'] != DETECTOR_NAMES or len(model['weights']) != len(FEATURE_NAMES) or
+    if (model.get('schema_version') != schema['schema_version'] or
+            model.get('feature_version') != schema['feature_version'] or
+            model['feature_names'] != schema['feature_names'] or
+            model['detector_names'] != schema['detector_names'] or len(model['weights']) != len(FEATURE_NAMES) or
             len(model['detector_weights']) != len(DETECTOR_NAMES) + 1 or
             any(not math.isfinite(v) for v in model['weights'] + model['detector_weights'])):
         raise ValueError('invalid or incompatible model')
@@ -418,7 +456,7 @@ def evaluate(args):
                 with gzip.open(raw, 'wt', newline='', encoding='utf-8') as stream, \
                         gzip.open(verification, 'wt', newline='', encoding='utf-8') as check_stream:
                     writer, check_writer = csv.writer(stream), csv.writer(check_stream)
-                    writer.writerow(RAW_COLUMNS)
+                    writer.writerow(raw_columns(config))
                     check_writer.writerow(['secret_id', 'split', 'session_id', 'phase', 'checker',
                                            'method', 'candidate_hex', 'accepted', 'verification_call'])
                     result = recover(budget, alphabet, len(secret), checker, config, model,
@@ -456,7 +494,7 @@ def evaluate(args):
                     'macro_character_accuracy': statistics.mean(r['correct_positions'] / r['length'] for r in rows),
                     'backtracks': sum(r['backtracks'] for r in rows),
                     'detector_rejections': sum(r['detector_rejections'] for r in rows)}
-    report = {'schema_version': 2, 'started_utc': started, 'finished_utc': now(),
+    report = {**schema_metadata(schema), 'started_utc': started, 'finished_utc': now(),
               'dataset_manifest_sha256': digest(dataset / 'manifest.json'), 'model_sha256': digest(model_path),
               'source_sha256': sources(), 'evaluation_config': evaluation_config,
               'platform': platform.platform(), 'python': platform.python_version(),
@@ -472,10 +510,13 @@ def evaluate(args):
                               'Staged mode compares two-character SHA-256 components and uses a full-stage-work control.',
                               'Staged component hashing is deliberately flawed authentication architecture, not password storage advice.',
                               'Collection blocks on one machine do not establish day/machine generalization.',
-                              'TSC ticks are reference ticks, not actual core cycles.']}
+                              'TSC ticks are reference ticks, not actual core cycles.',
+                              'Linux thread_cpu_ns is thread CPU time in nanoseconds, not hardware cycles.',
+                              'Batch repetitions change the observation model; correlated calls are not independent samples.',
+                              'This small pilot verifies integration, not a reliable recovery rate or proof of constant time.']}
     save(output / 'report.json', report)
     lines = ['# V2 held-out recovery ablations', '',
-             f'Checker: `{checker}`; password split: `{manifest["split_counts"]}`.', '',
+             f'Backend: `{backend}`; checker: `{checker}`; password split: `{manifest["split_counts"]}`.', '',
              '| Checker | Method | Ablation | Recovered | Mean checker calls | Mean verification calls | Mean seconds |',
              '| --- | --- | --- | ---: | ---: | ---: | ---: |']
     for key, value in aggregates.items():
@@ -494,7 +535,7 @@ def export(args):
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, 'x', compression=zipfile.ZIP_DEFLATED) as archive:
         for name in CORE_FILES:
-            if name not in ('native_windows.c', 'native_windows.dll', 'native_attack.py'):
+            if name != 'native_attack.py':
                 archive.write(ROOT / name, name)
         archive.write(dataset / 'manifest.json', 'dataset/manifest.json')
         for shard in manifest['shards'].values():
@@ -553,7 +594,7 @@ def main():
     args = parser.parse_args()
     try:
         args.action(args)
-    except (ValueError, RuntimeError, FileExistsError, UnicodeEncodeError) as error:
+    except (ValueError, RuntimeError, OSError) as error:
         parser.exit(2, f'Error: {error}\n')
 
 

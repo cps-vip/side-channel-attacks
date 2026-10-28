@@ -2,7 +2,23 @@
 
 This branch adds `timing_attack_with_ML/` to the team's existing side-channel research. It contains the original naive comparator, a preserved V1 timing-learning experiment, and a V2 pipeline with richer timing features and search ablations. The existing Rust and AES projects remain separate.
 
-**Start here:** use the V2 pilot below to build, collect, train, and evaluate. No GPU, Colab account, or third-party Python package is required for the core pipeline. Native collection and fresh password recovery require supported Windows x64 hardware.
+**Start here:** use the Linux runbook below on the project server, or the Windows V2 pilot for the original backend. No GPU, Colab account, or third-party Python package is required for the core pipeline. Native collection and fresh password recovery require supported Linux or Windows x86-64 hardware; Linux diagnostic plots additionally use Matplotlib.
+
+## Linux native pilot
+
+V2 now includes a Linux x86-64 port for the naive checker and its fixed-work
+control, with no artificial per-character workload. Follow the
+[Linux runbook](pswd-checker-v2/LINUX_RUNBOOK.md) for native build/testing,
+known-prefix diagnostics, and fixed-sample ML versus median evaluation.
+Linux uses thread CPU time in nanoseconds and a distinct feature schema, so
+fresh Linux data and models are required. The Windows-native setup and additional
+variants described below remain available; V1's native backend remains Windows-only.
+
+The [October 28 user-run pilot](docs/results/linux-pilot-2026-10-28/README.md)
+recovered 3/3 held-out secrets with fixed-sample ML and 2/3 with median ranking;
+each method recovered 0/3 on the control. It completed with matching source/build
+fingerprints and audited raw query counts. Three held-out secrets establish a
+working integration, not a general recovery-rate estimate.
 
 ## Research question and scope
 
@@ -26,7 +42,7 @@ The experiments assume a **known length and alphabet**, synthetic secrets of **4
 
 The V1 and V2 source files/builds are independent. Their feature schemas and model files are incompatible. Historical documents may mention the original author's `VIP` directory or locally available datasets/DLLs. **This README's clone-relative paths and build instructions apply to a fresh checkout.**
 
-## Prerequisites
+## Windows prerequisites
 
 | Task | Requirements |
 | --- | --- |
@@ -241,7 +257,7 @@ Use `python research_pipeline.py collect --help`, `train --help`, and `evaluate 
 
 ## Tests and contribution workflow
 
-The repository-root CI runs the original, V1, and V2 portable unittest suites on Linux. Native tests skip there; passing CI does not replace building and testing on Windows. The workflow nested inside this project folder is retained from the standalone layout; GitHub runs the workflow in the repository-root `.github/workflows` directory.
+The repository-root CI runs the original, V1, and V2 portable unittest suites on Linux. A separate Linux native job builds the shared library, runs the actual native tests, and smoke-tests diagnostic plots. Windows native checks still skip on Linux; this does not replace building and testing the Windows DLL. The workflow nested inside this project folder is retained from the standalone layout; GitHub runs the workflow in the repository-root `.github/workflows` directory.
 
 Before proposing a change, run the relevant tests, document settings and results including failures, and add a new result snapshot when appropriate. Keep code snippets and notebook links pinned to the reviewed commit when possible. From the repository root:
 

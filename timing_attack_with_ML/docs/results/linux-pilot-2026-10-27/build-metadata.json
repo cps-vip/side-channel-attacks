@@ -1,0 +1,22 @@
+{
+  "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "command": [
+    "cc",
+    "-std=c11",
+    "-O2",
+    "-fno-lto",
+    "-fPIC",
+    "-fvisibility=hidden",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-shared",
+    "native_linux.c",
+    "-o",
+    "native_linux.so"
+  ],
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "source_sha256": "8b2e03a4a42ba3ca0b612ebc3142758855de8b3967f2742986a300ee8d82b5be",
+  "library_sha256": "edd9a5b71d8d12e275ded6f070d58eb84222636564e74ef99f98dfbfcc05aadd"
+}
