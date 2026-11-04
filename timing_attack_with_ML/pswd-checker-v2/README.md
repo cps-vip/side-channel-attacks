@@ -1,5 +1,8 @@
 # Password timing research v2
 
+For an overview of the files, workflow, models, and Windows/Linux differences,
+read the [architecture guide](../ARCHITECTURE_GUIDE.md).
+
 ## Linux pilot
 
 Linux x86-64 now has a native backend for the naive checker, fixed-work control,

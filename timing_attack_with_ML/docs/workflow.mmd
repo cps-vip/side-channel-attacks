@@ -1,0 +1,24 @@
+flowchart TB
+    subgraph learn["Learn from examples"]
+        Split["Make synthetic passwords<br/>Separate train, validation, and test sets"]
+        Collect["Measure candidate timings<br/>Create labeled examples"]
+        Fit["Learn weights on training data<br/>Choose settings on validation data"]
+        Split --> Collect --> Fit
+    end
+    subgraph attack["Recover a held-out password"]
+        Probe["Try possible next characters"]
+        Rank["Measure and rank candidates<br/>ML score or median timing"]
+        Complete{"Guess complete?"}
+        Check["Check the full guess"]
+        Report["Report successes, failures,<br/>and query counts"]
+        Probe --> Rank --> Complete
+        Complete -- No --> Probe
+        Complete -- Yes --> Check --> Report
+    end
+    Fit -- "Saved model" --> Probe
+    classDef data fill:#e6f4f1,stroke:#137d72,color:#143d37;
+    classDef model fill:#e9edff,stroke:#5a67b5,color:#202c69;
+    classDef result fill:#fff1d6,stroke:#b17a20,color:#5b410f;
+    class Split,Collect data;
+    class Fit,Rank model;
+    class Report result;
