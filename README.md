@@ -8,6 +8,8 @@
 
 ## Current Status
 
+**Linux CPU-cycle experiment** — Run the [perf baseline](timing_attack_linux_perf/README.md) to compare the early-exit password checker with a fixed-work version using CPU cycle counts and median ranking.
+
 **Timing Attack on Password Authentication** — *Implemented in Rust (`main.rs`)*  
 A vulnerable password checker with an early-exit comparison is exploited by measuring per-character execution time to recover the secret. This is a demo for side-channel attacks.
 
