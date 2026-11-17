@@ -28,6 +28,12 @@ python3 experiment.py recover --secret a7b2 --output recover-a.csv
 
 Both checkers get the same budget. The demo assumes the password length is known and the characters are lowercase letters or digits. For each byte except the last, the script keeps the character with the highest median cycle count. It tries every possible final byte with the checker's yes/no result because a match and a mismatch at that byte both reach the final comparison. The terminal output includes the lead over the runner-up, whether a guess verified, and the total checker calls. With the defaults and a four-byte password, that's `10,800,036` calls per checker, including the 36 final guesses. Omit `--secret` for a fresh four-byte lab password. Use a new output filename for each run.
 
+## CPU core type
+
+The VIP server's i7-14700 is a hybrid CPU: performance cores (P-cores) are logical CPUs 0-15 on the `cpu_core` PMU, and efficiency cores (E-cores) are CPUs 16-27 on `cpu_atom`. The two use different microarchitectures, so cycle counts are only comparable within one type. `experiment.py` pins to a single CPU, records its core type in every CSV row and in the printed header, defaults to a performance core, and refuses to run if the pinned CPU's type cannot be confirmed or does not match `--core-type`.
+
+We standardize on performance cores. Pass `--core-type performance` to be explicit, or `--core-type efficiency` to select an E-core. With the current `perf_cycles.c` the generic hardware cycles event only schedules on `cpu_core`; on an E-core it reports `running_ns = 0` with zero cycles, so performance cores are the only type that currently produces usable counts.
+
 ## First VIP server run
 
 On November 11, 2026, both diagnostic runs on CPU 0 showed increasing median cycles as more bytes matched in the early-exit checker. From zero to five matching bytes the increase was about 13,000 cycles per 1,000 checks in each run. The fixed-work medians stayed within three cycles per batch within each run. In one recovery demo, the early-exit checker returned a verified `a7b2` and the fixed-work guess failed verification at the same query budget. These measurements show what happened in this run. More secrets and independent runs would be needed to estimate a recovery rate.
